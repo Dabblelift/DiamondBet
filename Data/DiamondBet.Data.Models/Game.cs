@@ -31,12 +31,12 @@
         public byte? AwayGoals { get; set; }
 
         [ForeignKey(nameof(Odds))]
-        public int OddsId { get; set; }
+        public int? OddsId { get; set; }
 
         public Odds Odds { get; set; }
 
         [ForeignKey(nameof(Competition))]
-        public int ComnetitionId { get; set; }
+        public int CompetitionId { get; set; }
 
         public virtual Competition Competition { get; set; }
 
