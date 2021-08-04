@@ -24,6 +24,20 @@
         {
         }
 
+        public DbSet<Bet> Bets { get; set; }
+
+        public DbSet<Country> Countries { get; set; }
+
+        public DbSet<Game> Games { get; set; }
+
+        public DbSet<Odds> Odds { get; set; }
+
+        public DbSet<Stadium> Stadiums { get; set; }
+
+        public DbSet<Team> Teams { get; set; }
+
+        public DbSet<Competition> Competitions { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -45,6 +59,29 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Game>(entity =>
+            {
+                entity
+                .HasOne(g => g.HomeTeam)
+                .WithMany(t => t.HomeGames)
+                .HasForeignKey(g => g.HomeTeamId);
+
+                entity.HasOne(g => g.AwayTeam)
+                .WithMany(t => t.AwayGames)
+                .HasForeignKey(g => g.AwayTeamId);
+
+                entity.HasOne(g => g.Odds)
+                .WithOne(o => o.Game)
+                .HasForeignKey<Odds>(o => o.GameId);
+            });
+
+            builder.Entity<Bet>(entity =>
+            {
+                entity.HasOne(b => b.User)
+                    .WithMany(u => u.UserBets)
+                    .HasForeignKey(b => b.UserId);
+            });
+
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
 

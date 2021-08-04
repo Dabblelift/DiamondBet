@@ -2,6 +2,7 @@
 {
     using System.Diagnostics;
 
+    using DiamondBet.Data.Models;
     using DiamondBet.Web.ViewModels;
 
     using Microsoft.AspNetCore.Mvc;
