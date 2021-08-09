@@ -1,0 +1,67 @@
+﻿@model DiamondBet.Web.ViewModels.Games.EditGameInputModel;
+
+@{
+    this.ViewData["Title"] = "Edit Game";
+    var teamsItems = this.Model.TeamsItems.Select(x => new SelectListItem(x.Value, x.Key));
+    var stadiumsItems = this.Model.StadiumsItems.Select(x => new SelectListItem(x.Value, x.Key));
+    var competitionsItems = this.Model.CompetitionsItems.Select(x => new SelectListItem(x.Value, x.Key));
+}
+<h1>@this.ViewData["Title"]</h1>
+
+<form method="post">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="HomeTeamId"></label>
+        <select asp-for="HomeTeamId" asp-items="teamsItems"></select>
+        <span asp-validation-for="HomeTeamId" class="text-danger"></span>
+        <input asp-for="HomeGoals" />
+        <span asp-validation-for="HomeGoals" class="text-danger"></span>
+        <input asp-for="AwayGoals" />
+        <span asp-validation-for="AwayGoals" class="text-danger"></span>
+        <select asp-for="AwayTeamId" asp-items="teamsItems"></select>
+        <label asp-for="AwayTeamId"></label>
+        <span asp-validation-for="AwayTeamId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CompetitionId"></label>
+        <select asp-for="CompetitionId" class="form-control" asp-items="competitionsItems"></select>
+        <span asp-validation-for="CompetitionId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="StadiumId"></label>
+        <select asp-for="StadiumId" class="form-control" asp-items="stadiumsItems"></select>
+        <span asp-validation-for="StadiumId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="StartingTime"></label>
+        <input asp-for="StartingTime" type="datetime-local" class="form-control" />
+        <span asp-validation-for="StartingTime" class="text-danger"></span>
+    </div>
+    <label asp-for="Odds"></label>
+    <div class="form-group">
+        <label asp-for="Odds.HomeWinOdds"></label>
+        <input asp-for="Odds.HomeWinOdds" size="4" />
+        <span asp-validation-for="Odds.HomeWinOdds" class="text-danger"></span>
+        <label asp-for="Odds.DrawOdds"></label>
+        <input asp-for="Odds.DrawOdds" size="4" />
+        <span asp-validation-for="Odds.DrawOdds" class="text-danger"></span>
+        <label asp-for="Odds.AwayWinOdds"></label>
+        <input asp-for="Odds.AwayWinOdds" size="4" />
+        <span asp-validation-for="Odds.AwayWinOdds" class="text-danger"></span>
+        <label asp-for="Odds.OverOdds"></label>
+        <input asp-for="Odds.OverOdds" size="4" />
+        <span asp-validation-for="Odds.OverOdds" class="text-danger"></span>
+        <label asp-for="Odds.UnderOdds"></label>
+        <input asp-for="Odds.UnderOdds" size="4" />
+        <span asp-validation-for="Odds.UnderOdds" class="text-danger"></span>
+        <label asp-for="Odds.BTTSYesOdds"></label>
+        <input asp-for="Odds.BTTSYesOdds" size="4" />
+        <span asp-validation-for="Odds.BTTSYesOdds" class="text-danger"></span>
+        <label asp-for="Odds.BTTSNoOdds"></label>
+        <input asp-for="Odds.BTTSNoOdds" size="4" />
+        <span asp-validation-for="Odds.BTTSNoOdds" class="text-danger"></span>
+    </div>
+    <input type="submit" class="btn btn-primary" />
+
+</form>

@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace DiamondBet.Data.Migrations
+﻿namespace DiamondBet.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class MakeGameOddsNullable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

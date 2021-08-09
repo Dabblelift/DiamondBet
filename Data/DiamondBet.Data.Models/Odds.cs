@@ -10,7 +10,7 @@
     public class Odds : BaseDeletableModel<int>
     {
         [ForeignKey(nameof(Game))]
-        public int GameId { get; set; }
+        public int? GameId { get; set; }
 
         public virtual Game Game { get; set; }
 

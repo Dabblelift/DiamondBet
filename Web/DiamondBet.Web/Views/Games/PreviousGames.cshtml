@@ -1,0 +1,26 @@
+﻿@model DiamondBet.Web.ViewModels.Games.GamesListViewModel
+@{
+    this.ViewData["Title"] = "Previous Games";
+}
+<h1>@this.ViewData["Title"]</h1>
+<ul>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="AddGame">Add a New Game</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="UpcomingGames">All Upcoming Games</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="UpcomingGamesToday">Games In 24 Hours</a>
+    </li>
+</ul>
+
+<ul style="list-style-type:none">
+    @foreach (var game in Model.Games)
+    {
+        <li>
+            @game.StartingTime ~ @game.HomeTeamName - @game.HomeTeamGoals:@game.AwayTeamGoals - @game.AwayTeamName
+            <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="ById" asp-route-id="@game.Id">Go to Match Details</a>
+        </li>
+    }
+</ul>

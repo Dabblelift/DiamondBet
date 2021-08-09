@@ -8,6 +8,7 @@
     using DiamondBet.Data.Models;
     using DiamondBet.Data.Repositories;
     using DiamondBet.Data.Seeding;
+    using DiamondBet.Services.Data;
     using DiamondBet.Services.Mapping;
     using DiamondBet.Services.Messaging;
     using DiamondBet.Web.ViewModels;
@@ -63,6 +64,8 @@
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
+            services.AddTransient<IGamesService, GamesService>();
+            services.AddTransient<ISelectItemsService, SelectItemsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
