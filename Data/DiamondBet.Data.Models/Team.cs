@@ -20,6 +20,9 @@
         [StringLength(70, MinimumLength = 2)]
         public string Name { get; set; }
 
+        [MaxLength(50)]
+        public string Nickname { get; set; }
+
         [ForeignKey(nameof(Country))]
         public int CountryId { get; set; }
 
