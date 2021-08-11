@@ -23,6 +23,9 @@
         [MaxLength(50)]
         public string Nickname { get; set; }
 
+        [Required]
+        public int YearFounded { get; set; }
+
         [ForeignKey(nameof(Country))]
         public int CountryId { get; set; }
 

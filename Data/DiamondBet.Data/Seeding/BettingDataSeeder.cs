@@ -17,28 +17,123 @@
                 return;
             }
 
-            await dbContext.Countries.AddAsync(new Country { Name = "England" });
-            await dbContext.Countries.AddAsync(new Country { Name = "Spain" });
-            await dbContext.Countries.AddAsync(new Country { Name = "Germany" });
+            await dbContext.Countries.AddAsync(new Country { Name = "England", Capital = "London" });
+            await dbContext.Countries.AddAsync(new Country { Name = "Spain", Capital = "Madrid" });
+            await dbContext.Countries.AddAsync(new Country { Name = "Germany", Capital = "Berlin" });
 
             await dbContext.SaveChangesAsync();
 
-            await dbContext.Teams.AddAsync(new Team { Name = "Manchester United", CountryId = 1 });
-            await dbContext.Teams.AddAsync(new Team { Name = "Chelsea", CountryId = 1 });
-            await dbContext.Teams.AddAsync(new Team { Name = "Liverpool", CountryId = 1 });
-            await dbContext.Teams.AddAsync(new Team { Name = "Barcelona", CountryId = 2 });
-            await dbContext.Teams.AddAsync(new Team { Name = "Real Madrid", CountryId = 2 });
-            await dbContext.Teams.AddAsync(new Team { Name = "Bayern Munich", CountryId = 3 });
-            await dbContext.Teams.AddAsync(new Team { Name = "Borussia Dortmund", CountryId = 3 });
+            await dbContext.Teams.AddAsync(new Team
+            {
+                Name = "Manchester United",
+                Nickname = "The Red Devils",
+                YearFounded = 1878,
+                CountryId = 1,
+            });
+            await dbContext.Teams.AddAsync(new Team
+            {
+                Name = "Chelsea",
+                Nickname = "The Blues",
+                YearFounded = 1905,
+                CountryId = 1,
+            });
+            await dbContext.Teams.AddAsync(new Team
+            {
+                Name = "Liverpool",
+                Nickname = "The Reds",
+                YearFounded = 1892,
+                CountryId = 1,
+            });
+            await dbContext.Teams.AddAsync(new Team
+            {
+                Name = "Manchester City",
+                Nickname = "The Citizens",
+                YearFounded = 1880,
+                CountryId = 1,
+            });
+            await dbContext.Teams.AddAsync(new Team
+            {
+                Name = "Barcelona",
+                Nickname = "Blaugranas",
+                YearFounded = 1899,
+                CountryId = 2,
+            });
+            await dbContext.Teams.AddAsync(new Team
+            {
+                Name = "Real Madrid",
+                Nickname = "Los Merengues",
+                YearFounded = 1902,
+                CountryId = 2,
+            });
+            await dbContext.Teams.AddAsync(new Team
+            {
+                Name = "Atletico Madrid",
+                Nickname = "Los Colchoneros",
+                YearFounded = 1903,
+                CountryId = 2,
+            });
+            await dbContext.Teams.AddAsync(new Team
+            {
+                Name = "Bayern Munich",
+                Nickname = "Die Bayern",
+                YearFounded = 1900,
+                CountryId = 3,
+            });
+            await dbContext.Teams.AddAsync(new Team
+            {
+                Name = "Borussia Dortmund",
+                Nickname = "Die Borussen",
+                YearFounded = 1909,
+                CountryId = 3,
+            });
 
-            await dbContext.Stadiums.AddAsync(new Stadium { Name = "Old Trafford", CountryId = 1 });
-            await dbContext.Stadiums.AddAsync(new Stadium { Name = "Camp Nou", CountryId = 2 });
-            await dbContext.Stadiums.AddAsync(new Stadium { Name = "Santiago Bernabeu", CountryId = 2 });
-            await dbContext.Stadiums.AddAsync(new Stadium { Name = "Signal Iduna Park   ", CountryId = 3 });
+            await dbContext.Stadiums.AddAsync(new Stadium
+            {
+                Name = "Old Trafford",
+                YearFounded = 1910,
+                Capacity = 74140,
+                CountryId = 1,
+            });
+            await dbContext.Stadiums.AddAsync(new Stadium
+            {
+                Name = "Camp Nou",
+                YearFounded = 1957,
+                Capacity = 99354,
+                CountryId = 2,
+            });
+            await dbContext.Stadiums.AddAsync(new Stadium
+            {
+                Name = "Santiago Bernabeu",
+                YearFounded = 1947,
+                Capacity = 81044,
+                CountryId = 2,
+            });
+            await dbContext.Stadiums.AddAsync(new Stadium
+            {
+                Name = "Signal Iduna Park",
+                YearFounded = 1974,
+                Capacity = 81365,
+                CountryId = 3,
+            });
 
-            await dbContext.Competitions.AddAsync(new Competition { Name = "Premier League", CountryId = 1 });
-            await dbContext.Competitions.AddAsync(new Competition { Name = "La Liga", CountryId = 2 });
-            await dbContext.Competitions.AddAsync(new Competition { Name = "Bundesliga", CountryId = 3 });
+            await dbContext.Competitions.AddAsync(new Competition
+            {
+                Name = "Premier League",
+                NumberOfParticipants = 20,
+                CountryId = 1,
+            });
+            await dbContext.Competitions.AddAsync(new Competition
+            {
+                Name = "La Liga",
+                NumberOfParticipants = 20,
+                CountryId = 2,
+            });
+            await dbContext.Competitions.AddAsync(new Competition
+            {
+                Name = "Bundesliga",
+                NumberOfParticipants = 18,
+                CountryId = 3,
+            });
 
             await dbContext.SaveChangesAsync();
 

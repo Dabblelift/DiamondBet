@@ -221,6 +221,9 @@ namespace DiamondBet.Data.Migrations
                         .HasMaxLength(70)
                         .HasColumnType("nvarchar(70)");
 
+                    b.Property<byte>("NumberOfParticipants")
+                        .HasColumnType("tinyint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CountryId");
@@ -236,6 +239,11 @@ namespace DiamondBet.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Capital")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -437,6 +445,9 @@ namespace DiamondBet.Data.Migrations
                     b.Property<string>("Nickname")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("YearFounded")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

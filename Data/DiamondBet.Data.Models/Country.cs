@@ -17,8 +17,12 @@
         }
 
         [Required]
-        [StringLength(50, MinimumLength = 2)]
+        [MaxLength(50)]
         public string Name { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string Capital { get; set; }
 
         public virtual ICollection<Team> Teams { get; set; }
 

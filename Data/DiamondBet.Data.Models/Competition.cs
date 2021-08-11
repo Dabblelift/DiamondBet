@@ -19,6 +19,8 @@
         [StringLength(70, MinimumLength = 5)]
         public string Name { get; set; }
 
+        public byte NumberOfParticipants { get; set; }
+
         [ForeignKey(nameof(Country))]
         public int CountryId { get; set; }
 
