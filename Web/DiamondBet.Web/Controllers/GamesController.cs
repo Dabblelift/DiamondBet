@@ -87,15 +87,29 @@
             return this.RedirectToAction(nameof(this.UpcomingGames));
         }
 
-        public IActionResult UpcomingGames()
+        public IActionResult UpcomingGames(int? id)
         {
+            if (id != null)
+            {
+                var teamGames = this.gamesService.GetUpcomingGamesByTeam((int)id);
+                var parameterModel = new GamesListViewModel { Games = teamGames };
+                return this.View(parameterModel);
+            }
+
             var games = this.gamesService.GetAllUpcomingGames();
             var model = new GamesListViewModel { Games = games };
             return this.View(model);
         }
 
-        public IActionResult PreviousGames()
+        public IActionResult PreviousGames(int? id)
         {
+            if (id != null)
+            {
+                var teamGames = this.gamesService.GetUpcomingGamesByTeam((int)id);
+                var parameterModel = new GamesListViewModel { Games = teamGames };
+                return this.View(parameterModel);
+            }
+
             var games = this.gamesService.GetPreviousGames();
             var model = new GamesListViewModel { Games = games };
             return this.View(model);

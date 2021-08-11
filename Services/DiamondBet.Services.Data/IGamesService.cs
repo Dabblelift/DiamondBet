@@ -23,5 +23,9 @@
         Task DeleteGameAsync(int id);
 
         GameByIdViewModel GetById(int id);
+
+        IEnumerable<GamеsInListViewModel> GetPreviousGamesByTeam(int teamId);
+
+        IEnumerable<GamеsInListViewModel> GetUpcomingGamesByTeam(int teamid);
     }
 }

@@ -204,5 +204,65 @@
                     },
                 }).ToList();
         }
+
+        IEnumerable<GamеsInListViewModel> IGamesService.GetPreviousGamesByTeam(int teamId)
+        {
+            return this.gamesRepository
+                .AllAsNoTracking()
+                .Where(x => x.HomeTeamId == teamId || x.AwayTeamId == teamId)
+                .Where(x => x.StartingTime < DateTime.UtcNow)
+                .OrderByDescending(x => x.StartingTime)
+                .Select(x => new GamеsInListViewModel
+                {
+                    AwayTeamGoals = x.AwayGoals,
+                    AwayTeamId = x.AwayTeamId,
+                    AwayTeamName = x.AwayTeam.Name,
+                    Id = x.Id,
+                    HomeTeamGoals = x.HomeGoals,
+                    HomeTeamId = x.HomeTeamId,
+                    HomeTeamName = x.HomeTeam.Name,
+                    StartingTime = x.StartingTime,
+                    Odds = new OddsViewModel
+                    {
+                        AwayWinOdds = x.Odds.AwayWinOdds,
+                        BTTSNoOdds = x.Odds.BTTSNoOdds,
+                        BTTSYesOdds = x.Odds.BTTSYesOdds,
+                        DrawOdds = x.Odds.DrawOdds,
+                        HomeWinOdds = x.Odds.HomeWinOdds,
+                        OverOdds = x.Odds.OverOdds,
+                        UnderOdds = x.Odds.UnderOdds,
+                    },
+                }).ToList();
+        }
+
+        IEnumerable<GamеsInListViewModel> IGamesService.GetUpcomingGamesByTeam(int teamId)
+        {
+            return this.gamesRepository
+                .AllAsNoTracking()
+                .Where(x => x.HomeTeamId == teamId || x.AwayTeamId == teamId)
+                .Where(x => x.StartingTime >= DateTime.UtcNow)
+                .OrderBy(x => x.StartingTime)
+                .Select(x => new GamеsInListViewModel
+                {
+                    AwayTeamGoals = x.AwayGoals,
+                    AwayTeamId = x.AwayTeamId,
+                    AwayTeamName = x.AwayTeam.Name,
+                    Id = x.Id,
+                    HomeTeamGoals = x.HomeGoals,
+                    HomeTeamId = x.HomeTeamId,
+                    HomeTeamName = x.HomeTeam.Name,
+                    StartingTime = x.StartingTime,
+                    Odds = new OddsViewModel
+                    {
+                        AwayWinOdds = x.Odds.AwayWinOdds,
+                        BTTSNoOdds = x.Odds.BTTSNoOdds,
+                        BTTSYesOdds = x.Odds.BTTSYesOdds,
+                        DrawOdds = x.Odds.DrawOdds,
+                        HomeWinOdds = x.Odds.HomeWinOdds,
+                        OverOdds = x.Odds.OverOdds,
+                        UnderOdds = x.Odds.UnderOdds,
+                    },
+                }).ToList();
+        }
     }
 }
