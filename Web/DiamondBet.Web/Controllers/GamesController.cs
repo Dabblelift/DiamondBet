@@ -23,7 +23,7 @@
         }
 
         [HttpGet]
-        public IActionResult AddGame()
+        public IActionResult Add()
         {
             var model = new AddGameInputModel();
             model.TeamsItems = this.selectItemsService.GetAllTeamsNames();
@@ -33,7 +33,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddGame(AddGameInputModel input)
+        public async Task<IActionResult> Add(AddGameInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
@@ -49,7 +49,7 @@
         }
 
         [HttpGet]
-        public IActionResult EditGame(int id)
+        public IActionResult Edit(int id)
         {
             var model = this.gamesService.GetGameIdForEdit(id);
 
@@ -66,7 +66,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditGame(EditGameInputModel input, int id)
+        public async Task<IActionResult> Edit(EditGameInputModel input, int id)
         {
             if (!this.ModelState.IsValid)
             {
@@ -81,7 +81,7 @@
             return this.RedirectToAction(nameof(this.ById), new { id = id });
         }
 
-        public async Task<IActionResult> DeleteGame(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             await this.gamesService.DeleteGameAsync(id);
             return this.RedirectToAction(nameof(this.UpcomingGames));

@@ -34,13 +34,8 @@
             return this.View(model);
         }
 
-        public IActionResult ByCountry(string country)
-        {
-            return this.View();
-        }
-
         [HttpGet]
-        public IActionResult AddTeam()
+        public IActionResult Add()
         {
             var model = new AddTeamInputModel();
             model.CountriesItems = this.selectItemsService.GetAllCountriesNames();
@@ -48,7 +43,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddTeam(AddTeamInputModel input)
+        public async Task<IActionResult> Add(AddTeamInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
@@ -62,7 +57,7 @@
         }
 
         [HttpGet]
-        public IActionResult EditTeam(int id)
+        public IActionResult Edit(int id)
         {
             var model = this.teamsService.GetTeamIdForEdit(id);
 
@@ -77,7 +72,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditTeam(EditTeamInputModel input, int id)
+        public async Task<IActionResult> Edit(EditTeamInputModel input, int id)
         {
             if (!this.ModelState.IsValid)
             {
@@ -90,7 +85,7 @@
             return this.RedirectToAction(nameof(this.ById), new { id = id });
         }
 
-        public async Task<IActionResult> DeleteTeam(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             await this.teamsService.DeleteTeamAsync(id);
             return this.RedirectToAction(nameof(this.All));
