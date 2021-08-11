@@ -114,7 +114,7 @@
                 .Select(g => new GamеsInListViewModel
                 {
                     Id = g.Id,
-                    StartingTime = g.StartingTime,
+                    StartingTime = g.StartingTime.ToLocalTime(),
                     AwayTeamId = g.AwayTeamId,
                     AwayTeamName = g.AwayTeam.Name,
                     HomeTeamId = g.HomeTeamId,
@@ -147,7 +147,7 @@
                 HomeTeamName = g.HomeTeam.Name,
                 StadiumId = g.StadiumId,
                 StadiumName = g.Stadium.Name,
-                StartingTime = g.StartingTime,
+                StartingTime = g.StartingTime.ToLocalTime(),
                 Odds = new OddsViewModel
                 {
                     AwayWinOdds = g.Odds.AwayWinOdds,
@@ -169,7 +169,7 @@
                 .Select(g => new GamеsInListViewModel
                 {
                     Id = g.Id,
-                    StartingTime = g.StartingTime,
+                    StartingTime = g.StartingTime.ToLocalTime(),
                     AwayTeamId = g.AwayTeamId,
                     AwayTeamName = g.AwayTeam.Name,
                     HomeTeamId = g.HomeTeamId,
@@ -187,7 +187,7 @@
                 .Select(g => new GamеsInListViewModel
                 {
                     Id = g.Id,
-                    StartingTime = g.StartingTime,
+                    StartingTime = g.StartingTime.ToLocalTime(),
                     AwayTeamId = g.AwayTeamId,
                     AwayTeamName = g.AwayTeam.Name,
                     HomeTeamId = g.HomeTeamId,

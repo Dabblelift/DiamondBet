@@ -10,5 +10,5 @@
 
 <p>
     <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="EditGame" asp-route-id="@Model.Id">Edit game</a>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="DeleteGame" asp-route-id="@Model.Id">Delete game</a>
+    <a class="nav-link text-dark" onclick="return confirm('Are you sure you want to delete this game?');" asp-area="" asp-controller="Games" asp-action="DeleteGame" asp-route-id="@Model.Id">Delete game</a>
 </p>

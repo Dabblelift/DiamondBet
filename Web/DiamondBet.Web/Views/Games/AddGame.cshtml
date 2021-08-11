@@ -1,6 +1,6 @@
 ﻿@model DiamondBet.Web.ViewModels.Games.AddGameInputModel 
 @{
-    this.ViewData["Title"] = "Add a new Game";
+    this.ViewData["Title"] = "Add a New Game";
     var teamsItems = this.Model.TeamsItems.Select(x => new SelectListItem(x.Value, x.Key));
     var stadiumsItems = this.Model.StadiumsItems.Select(x => new SelectListItem(x.Value, x.Key));
     var competitionsItems = this.Model.CompetitionsItems.Select(x => new SelectListItem(x.Value, x.Key));

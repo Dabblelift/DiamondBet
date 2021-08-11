@@ -1,0 +1,31 @@
+﻿@model DiamondBet.Web.ViewModels.Teams.TeamByIdViewModel
+@using DiamondBet.Common
+@{
+    this.ViewData["Title"] = Model.Name;
+}
+
+<h1>Team name: @Model.Name</h1>
+<h3>Country: @Model.CountryName ~~ Nickname: @Model.NickName</h3>
+
+<p>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Teams" asp-action="EditTeam" asp-route-id="@Model.Id">Edit team</a>
+    <a class="nav-link text-dark" onclick="return confirm('Are you sure you want to delete this team?');" asp-area="" asp-controller="Teams" asp-action="DeleteTeam" asp-route-id="@Model.Id">Delete team</a>
+</p>
+
+<p>Last 5 Games:</p>
+<ul>
+    @foreach (var game in Model.PreviousGames)
+    {
+        <li>@game.StartingTime ~ @game.HomeTeamName @game.HomeGoals:@game.AwayGoals @game.AwayTeamName</li>
+    }
+</ul>
+
+<p>Next 5 Games:</p>
+<ul>
+    @foreach (var game in Model.UpcomingGames)
+    {
+        <li>@game.StartingTime ~ @game.HomeTeamName : @game.AwayTeamName</li>
+    }
+</ul>
+
+

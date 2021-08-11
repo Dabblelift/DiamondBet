@@ -19,7 +19,7 @@
         [Display(Name = "Over 2.5")]
         public decimal OverOdds { get; set; }
 
-        [Display(Name = "Unger 2.5")]
+        [Display(Name = "Under 2.5")]
         public decimal UnderOdds { get; set; }
 
         [Display(Name = "BTTS - Yes")]

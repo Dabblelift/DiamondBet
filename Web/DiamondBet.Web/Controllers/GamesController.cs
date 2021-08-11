@@ -51,18 +51,18 @@
         [HttpGet]
         public IActionResult EditGame(int id)
         {
-            var input = this.gamesService.GetGameIdForEdit(id);
+            var model = this.gamesService.GetGameIdForEdit(id);
 
-            if (input == null)
+            if (model == null)
             {
                 return this.RedirectToAction("Error", "Home");
             }
 
-            input.TeamsItems = this.selectItemsService.GetAllTeamsNames();
-            input.CompetitionsItems = this.selectItemsService.GetAllCompetitionsNames();
-            input.StadiumsItems = this.selectItemsService.GetAllStadiumsNames();
+            model.TeamsItems = this.selectItemsService.GetAllTeamsNames();
+            model.CompetitionsItems = this.selectItemsService.GetAllCompetitionsNames();
+            model.StadiumsItems = this.selectItemsService.GetAllStadiumsNames();
 
-            return this.View(input);
+            return this.View(model);
         }
 
         [HttpPost]
@@ -78,7 +78,7 @@
 
             await this.gamesService.EditGameAsync(input, id);
 
-            return this.RedirectToAction(nameof(this.PreviousGames));
+            return this.RedirectToAction(nameof(this.ById), new { id = id });
         }
 
         public async Task<IActionResult> DeleteGame(int id)
