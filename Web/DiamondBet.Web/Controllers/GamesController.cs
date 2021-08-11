@@ -51,7 +51,7 @@
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var model = this.gamesService.GetGameIdForEdit(id);
+            var model = this.gamesService.GetGameDataForEdit(id);
 
             if (model == null)
             {

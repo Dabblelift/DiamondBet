@@ -59,7 +59,7 @@
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var model = this.teamsService.GetTeamIdForEdit(id);
+            var model = this.teamsService.GetTeamDataForEdit(id);
 
             if (model == null)
             {

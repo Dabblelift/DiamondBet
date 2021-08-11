@@ -58,7 +58,7 @@
             await this.gamesRepository.SaveChangesAsync();
         }
 
-        public EditGameInputModel GetGameIdForEdit(int id)
+        public EditGameInputModel GetGameDataForEdit(int id)
         {
             return this.gamesRepository.AllAsNoTracking().Where(g => g.Id == id).Select(g => new EditGameInputModel
             {

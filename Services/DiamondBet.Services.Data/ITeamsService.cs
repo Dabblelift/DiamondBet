@@ -17,7 +17,7 @@
 
         Task EditTeamAsync(EditTeamInputModel inputModel, int id);
 
-        EditTeamInputModel GetTeamIdForEdit(int id);
+        EditTeamInputModel GetTeamDataForEdit(int id);
 
         Task DeleteTeamAsync(int id);
 

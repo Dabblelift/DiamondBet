@@ -118,7 +118,7 @@
             }).FirstOrDefault();
         }
 
-        public EditTeamInputModel GetTeamIdForEdit(int id)
+        public EditTeamInputModel GetTeamDataForEdit(int id)
         {
             return this.teamsRepository.AllAsNoTracking().Where(x => x.Id == id).Select(x => new EditTeamInputModel
             {

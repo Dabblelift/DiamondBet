@@ -1,5 +1,4 @@
 ﻿@model DiamondBet.Web.ViewModels.Teams.EditTeamInputModel
-@using DiamondBet.Common
 @{
     this.ViewData["Title"] = "Edit Team";
     var countriesItems = this.Model.CountriesItems.Select(x => new SelectListItem(x.Value, x.Key));

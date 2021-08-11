@@ -16,7 +16,7 @@
 
         Task AddGameAsync(AddGameInputModel inputModel);
 
-        EditGameInputModel GetGameIdForEdit(int id);
+        EditGameInputModel GetGameDataForEdit(int id);
 
         Task EditGameAsync(EditGameInputModel inputModel, int id);
 
