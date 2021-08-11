@@ -19,7 +19,7 @@
         {
             if (value is int intValue)
             {
-                if (intValue <= DateTime.UtcNow.Year && intValue >= minYear)
+                if (intValue <= DateTime.UtcNow.Year && intValue >= this.minYear)
                 {
                     return true;
                 }

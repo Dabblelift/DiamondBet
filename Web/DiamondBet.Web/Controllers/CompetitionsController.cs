@@ -6,51 +6,32 @@
     using System.Threading.Tasks;
 
     using DiamondBet.Services.Data;
-    using DiamondBet.Web.ViewModels.Teams;
+    using DiamondBet.Web.ViewModels.Competitions;
     using Microsoft.AspNetCore.Mvc;
 
-    public class TeamsController : BaseController
+    public class CompetitionsController : BaseController
     {
-        private readonly ITeamsService teamsService;
+        private readonly ICompetitionsService competitionsService;
         private readonly ISelectItemsService selectItemsService;
 
-        public TeamsController(
-            ITeamsService teamsService,
+        public CompetitionsController(
+            ICompetitionsService competitionsService,
             ISelectItemsService selectItemsService)
         {
-            this.teamsService = teamsService;
+            this.competitionsService = competitionsService;
             this.selectItemsService = selectItemsService;
-        }
-
-        public IActionResult All()
-        {
-            var teams = this.teamsService.GetAllTeams();
-            var model = new TeamsListViewModel { Teams = teams };
-            return this.View(model);
-        }
-
-        public IActionResult ById(int id)
-        {
-            var model = this.teamsService.GetById(id);
-
-            if (model == null)
-            {
-                return this.RedirectToAction("Error", "Home");
-            }
-
-            return this.View(model);
         }
 
         [HttpGet]
         public IActionResult Add()
         {
-            var model = new AddTeamInputModel();
+            var model = new AddCompetitionInputModel();
             model.CountriesItems = this.selectItemsService.GetAllCountriesNames();
             return this.View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AddTeamInputModel input)
+        public async Task<IActionResult> Add(AddCompetitionInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
@@ -58,7 +39,7 @@
                 return this.View(input);
             }
 
-            await this.teamsService.AddTeamAsync(input);
+            await this.competitionsService.AddCompetitionAsync(input);
 
             return this.RedirectToAction(nameof(this.All));
         }
@@ -66,7 +47,7 @@
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var model = this.teamsService.GetTeamDataForEdit(id);
+            var model = this.competitionsService.GetCompetitionDataForEdit(id);
 
             if (model == null)
             {
@@ -78,8 +59,7 @@
             return this.View(model);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Edit(EditTeamInputModel input, int id)
+        public async Task<IActionResult> Edit(EditCompetitionInputModel input, int id)
         {
             if (!this.ModelState.IsValid)
             {
@@ -87,15 +67,34 @@
                 return this.View(input);
             }
 
-            await this.teamsService.EditTeamAsync(input, id);
+            await this.competitionsService.EditCompetitionAsync(input, id);
 
             return this.RedirectToAction(nameof(this.ById), new { id = id });
         }
 
         public async Task<IActionResult> Delete(int id)
         {
-            await this.teamsService.DeleteTeamAsync(id);
+            await this.competitionsService.DeleteCompetitionAsync(id);
             return this.RedirectToAction(nameof(this.All));
+        }
+
+        public IActionResult All()
+        {
+            var competitions = this.competitionsService.GetAllCompetitions();
+            var model = new CompetitionsListViewModel { Competitions = competitions };
+            return this.View(model);
+        }
+
+        public IActionResult ById(int id)
+        {
+            var model = this.competitionsService.GetById(id);
+
+            if (model == null)
+            {
+                return this.RedirectToAction("Error", "Home");
+            }
+
+            return this.View(model);
         }
     }
 }

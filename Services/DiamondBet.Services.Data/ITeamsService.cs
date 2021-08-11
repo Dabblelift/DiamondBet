@@ -20,6 +20,5 @@
         EditTeamInputModel GetTeamDataForEdit(int id);
 
         Task DeleteTeamAsync(int id);
-
     }
 }

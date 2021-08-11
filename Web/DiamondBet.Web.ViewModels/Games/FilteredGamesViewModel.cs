@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Text;
 
-    public class TeamGamesViewModel
+    public class FilteredGamesViewModel
     {
         public int GameId { get; set; }
 

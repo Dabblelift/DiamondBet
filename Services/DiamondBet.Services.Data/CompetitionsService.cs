@@ -8,73 +8,69 @@
 
     using DiamondBet.Data.Common.Repositories;
     using DiamondBet.Data.Models;
+    using DiamondBet.Web.ViewModels.Competitions;
     using DiamondBet.Web.ViewModels.Games;
-    using DiamondBet.Web.ViewModels.Teams;
 
-    public class TeamsService : ITeamsService
+    public class CompetitionsService : ICompetitionsService
     {
-        private readonly IDeletableEntityRepository<Team> teamsRepository;
+        private readonly IDeletableEntityRepository<Competition> competitionsRepository;
         private readonly IDeletableEntityRepository<Game> gamesRepository;
 
-        public TeamsService(
-            IDeletableEntityRepository<Team> teamsRepository,
+        public CompetitionsService(
+            IDeletableEntityRepository<Competition> competitionsRepository,
             IDeletableEntityRepository<Game> gamesRepository)
         {
-            this.teamsRepository = teamsRepository;
+            this.competitionsRepository = competitionsRepository;
             this.gamesRepository = gamesRepository;
         }
 
-        public async Task AddTeamAsync(AddTeamInputModel inputModel)
+        public async Task AddCompetitionAsync(AddCompetitionInputModel inputModel)
         {
-            var team = new Team
+            var competition = new Competition
             {
                 Name = inputModel.Name,
-                Nickname = inputModel.Nickname,
+                NumberOfParticipants = inputModel.NumberOfParticipants,
                 CountryId = inputModel.CountryId,
-                YearFounded = inputModel.YearFounded,
             };
 
-            await this.teamsRepository.AddAsync(team);
-            await this.teamsRepository.SaveChangesAsync();
+            await this.competitionsRepository.AddAsync(competition);
+            await this.competitionsRepository.SaveChangesAsync();
         }
 
-        public async Task DeleteTeamAsync(int id)
+        public async Task DeleteCompetitionAsync(int id)
         {
-            var team = this.teamsRepository.All().FirstOrDefault(g => g.Id == id);
-            this.teamsRepository.Delete(team);
-            await this.teamsRepository.SaveChangesAsync();
+            var competition = this.competitionsRepository.All().FirstOrDefault(x => x.Id == id);
+            this.competitionsRepository.Delete(competition);
+            await this.competitionsRepository.SaveChangesAsync();
         }
 
-        public async Task EditTeamAsync(EditTeamInputModel inputModel, int id)
+        public async Task EditCompetitionAsync(EditCompetitionInputModel inputModel, int id)
         {
-            var team = this.teamsRepository.All().Where(x => x.Id == id).SingleOrDefault();
-            team.Name = inputModel.Name;
-            team.Nickname = inputModel.Nickname;
-            team.CountryId = inputModel.CountryId;
-            team.YearFounded = inputModel.YearFounded;
+            var competition = this.competitionsRepository.All().Where(x => x.Id == id).SingleOrDefault();
+            competition.Name = inputModel.Name;
+            competition.NumberOfParticipants = inputModel.NumberOfParticipants;
+            competition.CountryId = inputModel.CountryId;
 
-            await this.teamsRepository.SaveChangesAsync();
+            await this.competitionsRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<TeamsInListViewModel> GetAllTeams()
+        public IEnumerable<CompetitionsInListViewModel> GetAllCompetitions()
         {
-            return this.teamsRepository.AllAsNoTracking().Select(x => new TeamsInListViewModel
+            return this.competitionsRepository.AllAsNoTracking().Select(x => new CompetitionsInListViewModel
             {
                 Id = x.Id,
                 Name = x.Name,
-                CountryId = x.CountryId,
-                CountryName = x.Country.Name,
             }).OrderBy(x => x.Name).ToList();
         }
 
-        public TeamByIdViewModel GetById(int id)
+        public CompetitionByIdViewModel GetById(int id)
         {
             var previousGames = this.gamesRepository
                 .AllAsNoTracking()
-                .Where(x => x.HomeTeamId == id || x.AwayTeamId == id)
+                .Where(x => x.CompetitionId == id)
                 .Where(x => x.StartingTime < DateTime.UtcNow)
                 .OrderByDescending(x => x.StartingTime)
-                .Take(5)
+                .Take(10)
                 .Select(x => new FilteredGamesViewModel
                 {
                     GameId = x.Id,
@@ -89,10 +85,10 @@
 
             var upcomingGames = this.gamesRepository
                 .AllAsNoTracking()
-                .Where(x => x.HomeTeamId == id || x.AwayTeamId == id)
+                .Where(x => x.CompetitionId == id)
                 .Where(x => x.StartingTime >= DateTime.UtcNow)
                 .OrderBy(x => x.StartingTime)
-                .Take(5)
+                .Take(10)
                 .Select(x => new FilteredGamesViewModel
                 {
                     GameId = x.Id,
@@ -105,27 +101,25 @@
                     StartingTime = x.StartingTime.ToLocalTime(),
                 }).ToList();
 
-            return this.teamsRepository.AllAsNoTracking().Where(x => x.Id == id).Select(x => new TeamByIdViewModel
+            return this.competitionsRepository.AllAsNoTracking().Where(x => x.Id == id).Select(x => new CompetitionByIdViewModel
             {
                 Id = x.Id,
                 CountryId = x.CountryId,
                 CountryName = x.Country.Name,
                 Name = x.Name,
-                NickName = x.Nickname,
-                YearFounded = x.YearFounded,
+                NumberOfParticipants = x.NumberOfParticipants,
                 PreviousGames = previousGames,
                 UpcomingGames = upcomingGames,
             }).FirstOrDefault();
         }
 
-        public EditTeamInputModel GetTeamDataForEdit(int id)
+        public EditCompetitionInputModel GetCompetitionDataForEdit(int id)
         {
-            return this.teamsRepository.AllAsNoTracking().Where(x => x.Id == id).Select(x => new EditTeamInputModel
+            return this.competitionsRepository.AllAsNoTracking().Where(x => x.Id == id).Select(x => new EditCompetitionInputModel
             {
                 Name = x.Name,
-                Nickname = x.Nickname,
+                NumberOfParticipants = x.NumberOfParticipants,
                 CountryId = x.CountryId,
-                YearFounded = x.YearFounded,
             }).FirstOrDefault();
         }
     }

@@ -1,0 +1,14 @@
+﻿@model DiamondBet.Web.ViewModels.Competitions.CompetitionsListViewModel
+@{
+    this.ViewData["Title"] = "All Competitions";
+}
+
+<h1>@this.ViewData["Title"]</h1>
+
+<a class="nav-link text-dark" asp-area="" asp-controller="Competitions" asp-action="Add">Add a New Competition</a>
+
+
+@foreach (var competition in Model.Competitions)
+{
+    <a class="nav-link text-dark" asp-area="" asp-controller="Competitions" asp-action="ById" asp-route-id="@competition.Id">@competition.Name</a>
+}

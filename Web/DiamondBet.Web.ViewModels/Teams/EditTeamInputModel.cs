@@ -1,11 +1,12 @@
-﻿using DiamondBet.Web.ViewModels.CustomValidation;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace DiamondBet.Web.ViewModels.Teams
+﻿namespace DiamondBet.Web.ViewModels.Teams
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Text;
+
+    using DiamondBet.Web.ViewModels.CustomValidation;
+
     public class EditTeamInputModel
     {
         [Required]
@@ -17,6 +18,7 @@ namespace DiamondBet.Web.ViewModels.Teams
 
         [Required]
         [CurrentYearMaxValue(1800)]
+        [Display(Name = "Year Founded")]
         public int YearFounded { get; set; }
 
         [Display(Name = "Country")]

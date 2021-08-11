@@ -1,4 +1,4 @@
-﻿namespace DiamondBet.Web.ViewModels.Teams
+﻿namespace DiamondBet.Web.ViewModels.Competitions
 {
     using System;
     using System.Collections.Generic;
@@ -6,15 +6,13 @@
 
     using DiamondBet.Web.ViewModels.Games;
 
-    public class TeamByIdViewModel
+    public class CompetitionByIdViewModel
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public string NickName { get; set; }
-
-        public int YearFounded { get; set; }
+        public byte NumberOfParticipants { get; set; }
 
         public int CountryId { get; set; }
 
