@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiamondBet.Web.ViewModels.CustomValidation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -13,6 +14,10 @@ namespace DiamondBet.Web.ViewModels.Teams
 
         [MaxLength(50)]
         public string Nickname { get; set; }
+
+        [Required]
+        [CurrentYearMaxValue(1800)]
+        public int YearFounded { get; set; }
 
         [Display(Name = "Country")]
         public int CountryId { get; set; }

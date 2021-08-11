@@ -22,6 +22,11 @@
         <span asp-validation-for="Nickname" class="text-danger"></span>
     </div>
     <div class="form-group">
+        <label asp-for="YearFounded"></label>
+        <input asp-for="YearFounded" class="form-control" />
+        <span asp-validation-for="YearFounded" class="text-danger"></span>
+    </div>
+    <div class="form-group">
         <label asp-for="CountryId"></label>
         <select asp-for="CountryId" class="form-control" asp-items="countriesItems"></select>
         <span asp-validation-for="CountryId" class="text-danger"></span>

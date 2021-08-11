@@ -31,6 +31,7 @@
                 Name = inputModel.Name,
                 Nickname = inputModel.Nickname,
                 CountryId = inputModel.CountryId,
+                YearFounded = inputModel.YearFounded,
             };
 
             await this.teamsRepository.AddAsync(team);
@@ -50,6 +51,7 @@
             team.Name = inputModel.Name;
             team.Nickname = inputModel.Nickname;
             team.CountryId = inputModel.CountryId;
+            team.YearFounded = inputModel.YearFounded;
 
             await this.teamsRepository.SaveChangesAsync();
         }
@@ -110,6 +112,7 @@
                 CountryName = x.Country.Name,
                 Name = x.Name,
                 NickName = x.Nickname,
+                YearFounded = x.YearFounded,
                 PreviousGames = previousGames,
                 UpcomingGames = upcomingGames,
             }).FirstOrDefault();
@@ -122,6 +125,7 @@
                 Name = x.Name,
                 Nickname = x.Nickname,
                 CountryId = x.CountryId,
+                YearFounded = x.YearFounded,
             }).FirstOrDefault();
         }
     }

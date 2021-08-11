@@ -5,7 +5,10 @@
 }
 
 <h1>Team name: @Model.Name</h1>
-<h3>Country: @Model.CountryName ~~ Nickname: @Model.NickName</h3>
+
+<h2>Country: @Model.CountryName</h2>
+<h3>Founded In: @Model.YearFounded ~~ Nickname: @Model.NickName</h3>
+
 
 <p>
     <a class="nav-link text-dark" asp-area="" asp-controller="Teams" asp-action="EditTeam" asp-route-id="@Model.Id">Edit team</a>
