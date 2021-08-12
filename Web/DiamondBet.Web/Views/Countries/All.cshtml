@@ -1,0 +1,15 @@
+﻿@model DiamondBet.Web.ViewModels.Countries.CountriesListViewModel;
+@{
+    this.ViewData["Title"] = "All Countries";
+}
+
+<h1>@this.ViewData["Title"]</h1>
+
+
+<a class="nav-link text-dark" asp-area="" asp-controller="Countries" asp-action="Add">Add a New Country</a>
+
+
+@foreach (var country in Model.Countries)
+{
+    <a class="nav-link text-dark" asp-area="" asp-controller="Countries" asp-action="ById" asp-route-id="@country.Id">@country.Name</a>
+}

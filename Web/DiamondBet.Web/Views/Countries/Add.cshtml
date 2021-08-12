@@ -1,0 +1,23 @@
+﻿@model DiamondBet.Web.ViewModels.Countries.AddCountryInputModel
+@{
+    this.ViewData["Title"] = "Add a New Country";
+}
+
+<h1>@this.ViewData["Title"]</h1>
+
+<form method="post">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Capital"></label>
+        <input asp-for="Capital" class="form-control" />
+        <span asp-validation-for="Capital" class="text-danger"></span>
+    </div>
+    <input type="submit" class="btn btn-primary" />
+
+</form>

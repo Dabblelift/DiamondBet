@@ -1,0 +1,19 @@
+﻿@model DiamondBet.Web.ViewModels.Countries.CountryByIdViewModel
+@{
+    this.ViewData["Title"] = Model.Name;
+}
+
+<h1>@this.ViewData["Title"]</h1>
+
+<h2>Capital: @Model.Capital</h2>
+
+
+<a class="nav-link text-dark" asp-area="" asp-controller="Countries" asp-action="Edit" asp-route-id="@Model.Id">Edit country</a>
+
+
+<p>Teams from @Model.Name:</p>
+
+@foreach (var team in Model.Teams)
+{
+    <a class="nav-link text-dark" asp-area="" asp-controller="Teams" asp-action="ById" asp-route-id="@team.Id">@team.Name</a>
+}
