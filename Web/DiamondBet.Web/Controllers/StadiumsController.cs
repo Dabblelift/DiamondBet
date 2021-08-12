@@ -4,34 +4,33 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
     using DiamondBet.Services.Data;
-    using DiamondBet.Web.ViewModels.Competitions;
+    using DiamondBet.Web.ViewModels.Stadiums;
     using Microsoft.AspNetCore.Mvc;
 
-    public class CompetitionsController : BaseController
+    public class StadiumsController : BaseController
     {
-        private readonly ICompetitionsService competitionsService;
+        private readonly IStadiumsService stadiumsService;
         private readonly ISelectItemsService selectItemsService;
 
-        public CompetitionsController(
-            ICompetitionsService competitionsService,
+        public StadiumsController(
+            IStadiumsService stadiumsService,
             ISelectItemsService selectItemsService)
         {
-            this.competitionsService = competitionsService;
+            this.stadiumsService = stadiumsService;
             this.selectItemsService = selectItemsService;
         }
 
         [HttpGet]
         public IActionResult Add()
         {
-            var model = new AddCompetitionInputModel();
+            var model = new AddStadiumInputModel();
             model.CountriesItems = this.selectItemsService.GetAllCountriesNames();
             return this.View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AddCompetitionInputModel input)
+        public async Task<IActionResult> Add(AddStadiumInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
@@ -39,7 +38,7 @@
                 return this.View(input);
             }
 
-            await this.competitionsService.AddCompetitionAsync(input);
+            await this.stadiumsService.AddStadiumAsync(input);
 
             return this.RedirectToAction(nameof(this.All));
         }
@@ -47,7 +46,7 @@
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var model = this.competitionsService.GetCompetitionDataForEdit(id);
+            var model = this.stadiumsService.GetStadiumDataForEdit(id);
 
             if (model == null)
             {
@@ -60,7 +59,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(EditCompetitionInputModel input, int id)
+        public async Task<IActionResult> Edit(EditStadiumInputModel input, int id)
         {
             if (!this.ModelState.IsValid)
             {
@@ -68,27 +67,27 @@
                 return this.View(input);
             }
 
-            await this.competitionsService.EditCompetitionAsync(input, id);
+            await this.stadiumsService.EditStadiumAsync(input, id);
 
             return this.RedirectToAction(nameof(this.ById), new { id = id });
         }
 
         public async Task<IActionResult> Delete(int id)
         {
-            await this.competitionsService.DeleteCompetitionAsync(id);
+            await this.stadiumsService.DeleteStadiumAsync(id);
             return this.RedirectToAction(nameof(this.All));
         }
 
         public IActionResult All()
         {
-            var competitions = this.competitionsService.GetAllCompetitions();
-            var model = new CompetitionsListViewModel { Competitions = competitions };
+            var stadiums = this.stadiumsService.GetAllStadiums();
+            var model = new StadiumsListViewModel { Stadiums = stadiums };
             return this.View(model);
         }
 
         public IActionResult ById(int id)
         {
-            var model = this.competitionsService.GetById(id);
+            var model = this.stadiumsService.GetById(id);
 
             if (model == null)
             {
