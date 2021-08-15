@@ -3,6 +3,11 @@
     this.ViewData["Title"] = "All Stadiums";
 }
 
+@if (this.TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-success">@this.TempData["Message"]</div>
+}
+
 <h1>@this.ViewData["Title"]</h1>
 
 <a class="nav-link text-dark" asp-area="" asp-controller="Stadiums" asp-action="Add">Add a New Stadium</a>
@@ -10,5 +15,5 @@
 
 @foreach (var stadium in Model.Stadiums)
 {
-<p><a class="nav-link text-dark" asp-area="" asp-controller="Stadiums" asp-action="ById" asp-route-id="@stadium.Id">@stadium.Name </a> - @stadium.Capacity seats</p>
+    <p><a class="nav-link text-dark" asp-area="" asp-controller="Stadiums" asp-action="ById" asp-route-id="@stadium.Id">@stadium.Name </a> - @stadium.Capacity seats</p>
 }

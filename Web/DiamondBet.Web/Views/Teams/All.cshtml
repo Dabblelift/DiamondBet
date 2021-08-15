@@ -3,14 +3,37 @@
     this.ViewData["Title"] = "All Teams";
 }
 
-<h1>@this.ViewData["Title"]</h1>
+@if (this.TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-success">@this.TempData["Message"]</div>
+}
 
+<h1 class="text-center">@this.ViewData["Title"]</h1>
 
 <a class="nav-link text-dark" asp-area="" asp-controller="Teams" asp-action="Add">Add a New Team</a>
 
 
-@foreach (var team in Model.Teams)
-{
-    <li>@team.Name ~ (@team.CountryName)</li>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Teams" asp-action="ById" asp-route-id="@team.Id">Go to Team Page</a>
-}
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th class="col-6">Team</th>
+            <th class="col-6">Country</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var team in Model.Teams)
+        {
+            <tr>
+                <td>
+                    <a class="nav-link text-dark text-left" asp-area="" asp-controller="Teams" asp-action="ById" asp-route-id="@team.Id">@team.Name</a>
+                </td>
+                <td>
+                    <a class="nav-link text-dark text-left" asp-area="" asp-controller="Countries" asp-action="ById" asp-route-id="@team.CountryId">@team.CountryName</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
