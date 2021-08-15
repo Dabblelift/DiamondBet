@@ -6,6 +6,7 @@
 
     public enum Prediction
     {
+        NoPrediction,
         HomeWin,
         Draw,
         AwayWin,

@@ -70,6 +70,7 @@
             services.AddTransient<ICompetitionsService, CompetitionsService>();
             services.AddTransient<IStadiumsService, StadiumsService>();
             services.AddTransient<ICountriesService, CountriesService>();
+            services.AddTransient<IBetsService, BetsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

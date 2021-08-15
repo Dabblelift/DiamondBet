@@ -1,0 +1,15 @@
+﻿@model DiamondBet.Web.ViewModels.Bets.BetsListViewModel
+@{
+    this.ViewData["Title"] = "All Bets:";
+}
+
+<h1>@this.ViewData["Title"]</h1>
+
+<a class="nav-link text-dark" asp-area="" asp-controller="Bets" asp-action="ByUser" asp-route-id="@Model.UserId">My Bets</a>
+
+
+@foreach (var bet in Model.Bets)
+{
+    <a class="nav-link text-dark" asp-area="" asp-controller="Bets" asp-action="ById" asp-route-id="@bet.Id">@bet.HomeTeamName @bet.HomeTeamGoals:@bet.AwayTeamGoals @bet.AwayTeamName</a>
+    <p>Prediction: @bet.Prediction / Odds: @bet.BetOdds / Status: @bet.BetStatus / User: @bet.Username</p>
+}

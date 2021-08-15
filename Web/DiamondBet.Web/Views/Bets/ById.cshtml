@@ -1,0 +1,11 @@
+﻿@model DiamondBet.Web.ViewModels.Bets.BetByIdViewModel
+@{
+    this.ViewData["Title"] = $"Bet By Id - {Model.Id}";
+}
+
+<h1>@this.ViewData["Title"]</h1>
+
+
+<a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="ById" asp-route-id="@Model.GameId">@Model.HomeTeamName @Model.HomeTeamGoals:@Model.AwayTeamGoals @Model.AwayTeamName</a>
+<p>Bet Type: @Model.BetType / Prediction: @Model.Prediction / Status: @Model.BetStatus / User: @Model.Username </p> 
+<p>Stake: @Model.Stake / Odds: @Model.BetOdds / Return on Win: @Model.ReturnOnWin</p>

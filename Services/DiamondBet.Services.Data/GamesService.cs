@@ -68,7 +68,7 @@
                 HomeGoals = g.HomeGoals,
                 HomeTeamId = g.HomeTeamId,
                 StadiumId = g.StadiumId,
-                StartingTime = g.StartingTime,
+                StartingTime = g.StartingTime.ToLocalTime(),
                 Odds = new OddsInputModel
                 {
                     AwayWinOdds = g.Odds.AwayWinOdds,
@@ -114,7 +114,7 @@
                 .Select(g => new GamеsInListViewModel
                 {
                     Id = g.Id,
-                    StartingTime = g.StartingTime.ToLocalTime(),
+                    StartingTime = g.StartingTime.ToLocalTime().ToString("dd/MM/yyyy  HH:mm"),
                     AwayTeamId = g.AwayTeamId,
                     AwayTeamName = g.AwayTeam.Name,
                     HomeTeamId = g.HomeTeamId,
@@ -147,7 +147,7 @@
                 HomeTeamName = g.HomeTeam.Name,
                 StadiumId = g.StadiumId,
                 StadiumName = g.Stadium.Name,
-                StartingTime = g.StartingTime.ToLocalTime(),
+                StartingTime = g.StartingTime.ToLocalTime().ToString("dd/MM/yyyy  HH:mm"),
                 Odds = new OddsViewModel
                 {
                     AwayWinOdds = g.Odds.AwayWinOdds,
@@ -169,7 +169,7 @@
                 .Select(g => new GamеsInListViewModel
                 {
                     Id = g.Id,
-                    StartingTime = g.StartingTime.ToLocalTime(),
+                    StartingTime = g.StartingTime.ToLocalTime().ToString("dd/MM/yyyy  HH:mm"),
                     AwayTeamId = g.AwayTeamId,
                     AwayTeamName = g.AwayTeam.Name,
                     HomeTeamId = g.HomeTeamId,
@@ -187,7 +187,7 @@
                 .Select(g => new GamеsInListViewModel
                 {
                     Id = g.Id,
-                    StartingTime = g.StartingTime.ToLocalTime(),
+                    StartingTime = g.StartingTime.ToLocalTime().ToString("dd/MM/yyyy  HH:mm"),
                     AwayTeamId = g.AwayTeamId,
                     AwayTeamName = g.AwayTeam.Name,
                     HomeTeamId = g.HomeTeamId,
@@ -221,7 +221,7 @@
                     HomeTeamGoals = x.HomeGoals,
                     HomeTeamId = x.HomeTeamId,
                     HomeTeamName = x.HomeTeam.Name,
-                    StartingTime = x.StartingTime,
+                    StartingTime = x.StartingTime.ToLocalTime().ToString("dd/MM/yyyy  HH:mm"),
                     Odds = new OddsViewModel
                     {
                         AwayWinOdds = x.Odds.AwayWinOdds,
@@ -251,7 +251,7 @@
                     HomeTeamGoals = x.HomeGoals,
                     HomeTeamId = x.HomeTeamId,
                     HomeTeamName = x.HomeTeam.Name,
-                    StartingTime = x.StartingTime,
+                    StartingTime = x.StartingTime.ToString("dd/MM/yyyy  HH:mm"),
                     Odds = new OddsViewModel
                     {
                         AwayWinOdds = x.Odds.AwayWinOdds,
