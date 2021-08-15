@@ -2,11 +2,14 @@
 @{
     this.ViewData["Title"] = "Upcoming Games";
 }
-<h1>@this.ViewData["Title"]</h1>
-<ul>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="Add">Add a New Game</a>
-    </li>
+
+@if (this.TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-success">@this.TempData["Message"]</div>
+}
+
+<h1 class="text-center">@this.ViewData["Title"]</h1>
+<ul class="row justify-content-center nav">
     <li class="nav-item">
         <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="PreviousGames">Previous Games</a>
     </li>
@@ -15,11 +18,57 @@
     </li>
 </ul>
 
-<ul style="list-style-type:none">
-    @foreach (var game in Model.Games)
-    {
-        <li>@game.StartingTime ~ @game.HomeTeamName - @game.Odds.HomeWinOdds / @game.Odds.DrawOdds / @game.Odds.AwayWinOdds - @game.AwayTeamName</li>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="ById" asp-route-id="@game.Id">Go to Match Details</a>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th class="col-2">Date</th>
+            <th class="col-4">Game</th>
+            <th class="col-6">Odds</th>
+        </tr>
+    </thead>
+    <tbody>
 
-    }
-</ul>
+        @foreach (var game in Model.Games)
+        {
+        <tr>
+            <td>
+                <p>@game.StartingTime</p>
+            </td>
+            <td>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="ById" asp-route-id="@game.Id">@game.HomeTeamName - @game.AwayTeamName</a>
+            </td>
+            <td class="btn-group btn-group-toggle container px-0" data-toggle="buttons">
+                <form action="@Url.Content($"~/Bets/Create/{game.Id}")">
+                    <div class="btn-group btn-group-toggle container" data-toggle="buttons">
+                        <label class="btn btn-outline-dark col border-0 text-center">
+                            <input type="radio" name="PredictionId" id="1" value="1" />Home: <br /> @game.Odds.HomeWinOdds
+                        </label>
+                        <label class="btn btn-outline-dark col border-0 text-center">
+                            <input type="radio" name="PredictionId" id="2" value="2" style="white-space: normal" />Draw: <br /> @game.Odds.DrawOdds
+                        </label>
+                        <label class="btn btn-outline-dark col border-0 text-center">
+                            <input type="radio" name="PredictionId" id="3" value="3" />Away: <br /> @game.Odds.AwayWinOdds
+                        </label>
+                        <label class="btn btn-outline-dark col border-0 text-center">
+                            <input type="radio" name="PredictionId" id="4" value="4" />Over: <br /> @game.Odds.OverOdds
+                        </label>
+                        <label class="btn btn-outline-dark col border-0 text-center">
+                            <input type="radio" name="PredictionId" id="5" value="5" />Under: <br /> @game.Odds.UnderOdds
+                        </label>
+                        <label class="btn btn-outline-dark col border-0 text-center">
+                            <input type="radio" name="PredictionId" id="6" value="6" />BTTS/Yes: <br /> @game.Odds.BTTSYesOdds
+                        </label>
+                        <label class="btn btn-outline-dark col border-0 text-center">
+                            <input type="radio" name="PredictionId" id="7" value="7" />BTTS/No: <br /> @game.Odds.BTTSNoOdds
+                        </label>
+
+                        <input class="col-2" type="number" name="Stake" placeholder="Stake:" />
+                        <input type="submit" value="Bet" class="btn btn-info col-1 m-0 p-0" />
+                    </div>
+                </form>
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>
