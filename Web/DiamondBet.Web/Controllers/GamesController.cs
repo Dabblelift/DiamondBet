@@ -12,13 +12,16 @@
     public class GamesController : BaseController
     {
         private readonly IGamesService gamesService;
+        private readonly IBetsService betsService;
         private readonly ISelectItemsService selectItemsService;
 
         public GamesController(
             IGamesService gamesService,
+            IBetsService betsService,
             ISelectItemsService selectItemsService)
         {
             this.gamesService = gamesService;
+            this.betsService = betsService;
             this.selectItemsService = selectItemsService;
         }
 
@@ -44,6 +47,7 @@
             }
 
             await this.gamesService.AddGameAsync(input);
+            this.TempData["Message"] = "A new game was added successfully";
 
             return this.RedirectToAction(nameof(this.UpcomingGames));
         }
@@ -77,6 +81,11 @@
             }
 
             await this.gamesService.EditGameAsync(input, id);
+
+            if (input.HomeGoals != null && input.AwayGoals != null)
+            {
+                await this.betsService.SettleBetsOnGameResultEditAsync(input, id);
+            }
 
             return this.RedirectToAction(nameof(this.ById), new { id = id });
         }

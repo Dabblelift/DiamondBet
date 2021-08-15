@@ -39,6 +39,7 @@
             }
 
             await this.stadiumsService.AddStadiumAsync(input);
+            this.TempData["Message"] = "A new stadium was added successfully.";
 
             return this.RedirectToAction(nameof(this.All));
         }

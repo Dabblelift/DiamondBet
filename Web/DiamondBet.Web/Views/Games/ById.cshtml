@@ -1,14 +1,13 @@
 ﻿@model DiamondBet.Web.ViewModels.Games.GameByIdViewModel
 @{
-    this.ViewData["Title"] = $"{Model.HomeTeamName} - {Model.AwayTeamName}";
+    this.ViewData["Title"] = $"{Model.HomeTeamName} {Model.HomeGoals} - {Model.AwayGoals} {Model.AwayTeamName}";
 }
-<h1>@this.ViewData["Title"]</h1>
 
 <h2>@Model.StartingTime ~~ @Model.HomeTeamName @Model.HomeGoals:@Model.AwayGoals @Model.AwayTeamName</h2>
 
 <h3>Venue: @Model.StadiumName ---- Competition: @Model.CompetitionName</h3>
 
-<p>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="Edit" asp-route-id="@Model.Id">Edit game</a>
-    <a class="nav-link text-dark" onclick="return confirm('Are you sure you want to delete this game?');" asp-area="" asp-controller="Games" asp-action="Delete" asp-route-id="@Model.Id">Delete game</a>
-</p>
+<div class="d-flex flex-row my-2 justify-content-end align-items-end">
+    <a class="btn btn-primary nav-link ml-1 text-white" asp-area="" asp-controller="Games" asp-action="Edit" asp-route-id="@Model.Id">Edit game</a>
+    <a class="btn btn-danger nav-link ml-1 text-white" onclick="return confirm('Are you sure you want to delete this game?');" asp-area="" asp-controller="Games" asp-action="Delete" asp-route-id="@Model.Id">Delete game</a>
+</div>

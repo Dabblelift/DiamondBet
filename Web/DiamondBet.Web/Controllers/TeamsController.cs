@@ -59,6 +59,7 @@
             }
 
             await this.teamsService.AddTeamAsync(input);
+            this.TempData["Message"] = "A new team was added successfully.";
 
             return this.RedirectToAction(nameof(this.All));
         }

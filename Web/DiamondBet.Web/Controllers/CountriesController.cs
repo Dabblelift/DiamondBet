@@ -52,6 +52,8 @@
             }
 
             await this.countriesService.AddCountryAsync(input);
+            this.TempData["Message"] = "A new country was added successfully";
+
 
             return this.RedirectToAction(nameof(this.All));
         }

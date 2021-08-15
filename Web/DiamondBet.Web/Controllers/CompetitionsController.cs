@@ -40,6 +40,7 @@
             }
 
             await this.competitionsService.AddCompetitionAsync(input);
+            this.TempData["Message"] = "A new competition was added successfully.";
 
             return this.RedirectToAction(nameof(this.All));
         }
