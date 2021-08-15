@@ -18,6 +18,6 @@
         <input asp-for="Capital" class="form-control" />
         <span asp-validation-for="Capital" class="text-danger"></span>
     </div>
-    <input type="submit" class="btn btn-primary" />
+    <input type="submit" class="btn btn-primary" onclick="return confirm('You are going to change this country\'s data. Are you sure?');"/>
 
 </form>
