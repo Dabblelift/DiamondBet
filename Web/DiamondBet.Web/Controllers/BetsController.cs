@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using DiamondBet.Data.Models;
     using DiamondBet.Data.Models.Enums;
     using DiamondBet.Services.Data;
@@ -23,7 +24,8 @@
             this.userManager = userManager;
             this.betsService = betsService;
         }
-        public async Task<IActionResult> ByUser(string id)
+
+        public IActionResult ByUser(string id)
         {
             var bets = this.betsService.GetBetsByUserId(id);
             var model = new BetsListViewModel
@@ -68,7 +70,6 @@
             {
                 return this.RedirectToAction("Error", "Bets");
             }
-
         }
 
         public IActionResult ById(string id)

@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+
     using DiamondBet.Data.Common.Repositories;
     using DiamondBet.Data.Models;
     using DiamondBet.Web.ViewModels.Games;

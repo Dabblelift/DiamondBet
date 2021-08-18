@@ -22,7 +22,7 @@
         public DateTime StartingTime { get; set; }
 
         [Display(Name = "Home Goals")]
-        [Range(0,100)]
+        [Range(0, 100)]
         public byte? HomeGoals { get; set; }
 
         [Display(Name = "Away Goals")]

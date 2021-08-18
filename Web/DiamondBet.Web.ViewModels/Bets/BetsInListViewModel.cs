@@ -29,6 +29,5 @@
         public string Prediction { get; set; }
 
         public string BetStatus { get; set; }
-
     }
 }

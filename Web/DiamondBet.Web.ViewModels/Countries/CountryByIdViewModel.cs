@@ -15,6 +15,5 @@
         public string Capital { get; set; }
 
         public IEnumerable<TeamsInCountryViewModel> Teams { get; set; }
-
     }
 }

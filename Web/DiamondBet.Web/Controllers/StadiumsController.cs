@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using DiamondBet.Services.Data;
     using DiamondBet.Web.ViewModels.Stadiums;
     using Microsoft.AspNetCore.Mvc;

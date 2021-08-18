@@ -1,9 +1,10 @@
 ﻿namespace DiamondBet.Web.ViewModels.Bets
 {
-    using DiamondBet.Data.Models.Enums;
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    using DiamondBet.Data.Models.Enums;
 
     public class BetByIdViewModel
     {
@@ -34,6 +35,5 @@
         public string Prediction { get; set; }
 
         public string BetStatus { get; set; }
-
     }
 }

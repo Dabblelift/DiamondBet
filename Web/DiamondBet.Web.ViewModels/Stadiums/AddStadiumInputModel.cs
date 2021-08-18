@@ -1,10 +1,11 @@
 ﻿namespace DiamondBet.Web.ViewModels.Stadiums
 {
-    using DiamondBet.Web.ViewModels.CustomValidation;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Text;
+
+    using DiamondBet.Web.ViewModels.CustomValidation;
 
     public class AddStadiumInputModel
     {

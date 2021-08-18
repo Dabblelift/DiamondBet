@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using DiamondBet.Services.Data;
     using DiamondBet.Web.ViewModels.Countries;
     using Microsoft.AspNetCore.Mvc;
@@ -53,7 +54,6 @@
 
             await this.countriesService.AddCountryAsync(input);
             this.TempData["Message"] = "A new country was added successfully";
-
 
             return this.RedirectToAction(nameof(this.All));
         }

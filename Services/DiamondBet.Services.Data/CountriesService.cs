@@ -1,14 +1,15 @@
 ﻿namespace DiamondBet.Services.Data
 {
-    using DiamondBet.Data.Common.Repositories;
-    using DiamondBet.Data.Models;
-    using DiamondBet.Web.ViewModels.Countries;
-    using DiamondBet.Web.ViewModels.Teams;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+
+    using DiamondBet.Data.Common.Repositories;
+    using DiamondBet.Data.Models;
+    using DiamondBet.Web.ViewModels.Countries;
+    using DiamondBet.Web.ViewModels.Teams;
 
     public class CountriesService : ICountriesService
     {
@@ -80,7 +81,7 @@
             return this.countriesRepository.AllAsNoTracking().Where(x => x.Id == id).Select(x => new EditCountryInputModel
             {
                 Name = x.Name,
-                Capital = x.Capital
+                Capital = x.Capital,
             }).FirstOrDefault();
         }
     }
