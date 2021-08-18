@@ -23,29 +23,6 @@
         }
 
         [HttpGet]
-        public IActionResult Add()
-        {
-            var model = new AddCompetitionInputModel();
-            model.CountriesItems = this.selectItemsService.GetAllCountriesNames();
-            return this.View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Add(AddCompetitionInputModel input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                input.CountriesItems = this.selectItemsService.GetAllCountriesNames();
-                return this.View(input);
-            }
-
-            await this.competitionsService.AddCompetitionAsync(input);
-            this.TempData["Message"] = "A new competition was added successfully.";
-
-            return this.RedirectToAction(nameof(this.All));
-        }
-
-        [HttpGet]
         public IActionResult Edit(int id)
         {
             var model = this.competitionsService.GetCompetitionDataForEdit(id);

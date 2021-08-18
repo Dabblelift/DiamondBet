@@ -42,29 +42,6 @@
         }
 
         [HttpGet]
-        public IActionResult Add()
-        {
-            var model = new AddTeamInputModel();
-            model.CountriesItems = this.selectItemsService.GetAllCountriesNames();
-            return this.View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Add(AddTeamInputModel input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                input.CountriesItems = this.selectItemsService.GetAllCountriesNames();
-                return this.View(input);
-            }
-
-            await this.teamsService.AddTeamAsync(input);
-            this.TempData["Message"] = "A new team was added successfully.";
-
-            return this.RedirectToAction(nameof(this.All));
-        }
-
-        [HttpGet]
         public IActionResult Edit(int id)
         {
             var model = this.teamsService.GetTeamDataForEdit(id);

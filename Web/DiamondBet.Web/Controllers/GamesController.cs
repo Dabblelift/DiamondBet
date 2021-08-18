@@ -26,33 +26,6 @@
         }
 
         [HttpGet]
-        public IActionResult Add()
-        {
-            var model = new AddGameInputModel();
-            model.TeamsItems = this.selectItemsService.GetAllTeamsNames();
-            model.CompetitionsItems = this.selectItemsService.GetAllCompetitionsNames();
-            model.StadiumsItems = this.selectItemsService.GetAllStadiumsNames();
-            return this.View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Add(AddGameInputModel input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                input.TeamsItems = this.selectItemsService.GetAllTeamsNames();
-                input.CompetitionsItems = this.selectItemsService.GetAllCompetitionsNames();
-                input.StadiumsItems = this.selectItemsService.GetAllStadiumsNames();
-                return this.View(input);
-            }
-
-            await this.gamesService.AddGameAsync(input);
-            this.TempData["Message"] = "A new game was added successfully";
-
-            return this.RedirectToAction(nameof(this.UpcomingGames));
-        }
-
-        [HttpGet]
         public IActionResult Edit(int id)
         {
             var model = this.gamesService.GetGameDataForEdit(id);

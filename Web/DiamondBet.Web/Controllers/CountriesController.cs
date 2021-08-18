@@ -39,26 +39,6 @@
         }
 
         [HttpGet]
-        public IActionResult Add()
-        {
-            return this.View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Add(AddCountryInputModel input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(input);
-            }
-
-            await this.countriesService.AddCountryAsync(input);
-            this.TempData["Message"] = "A new country was added successfully";
-
-            return this.RedirectToAction(nameof(this.All));
-        }
-
-        [HttpGet]
         public IActionResult Edit(int id)
         {
             var model = this.countriesService.GetCountryDataForEdit(id);
