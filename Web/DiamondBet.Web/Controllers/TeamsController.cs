@@ -40,11 +40,5 @@
 
             return this.View(model);
         }
-
-        public async Task<IActionResult> Delete(int id)
-        {
-            await this.teamsService.DeleteTeamAsync(id);
-            return this.RedirectToAction(nameof(this.All));
-        }
     }
 }

@@ -22,12 +22,6 @@
             this.selectItemsService = selectItemsService;
         }
 
-        public async Task<IActionResult> Delete(int id)
-        {
-            await this.stadiumsService.DeleteStadiumAsync(id);
-            return this.RedirectToAction(nameof(this.All));
-        }
-
         public IActionResult All()
         {
             var stadiums = this.stadiumsService.GetAllStadiums();

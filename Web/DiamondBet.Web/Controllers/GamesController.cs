@@ -25,12 +25,6 @@
             this.selectItemsService = selectItemsService;
         }
 
-        public async Task<IActionResult> Delete(int id)
-        {
-            await this.gamesService.DeleteGameAsync(id);
-            return this.RedirectToAction(nameof(this.UpcomingGames));
-        }
-
         public IActionResult UpcomingGames(int? id)
         {
             if (id != null)
