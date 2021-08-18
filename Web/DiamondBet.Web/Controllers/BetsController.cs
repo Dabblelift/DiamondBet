@@ -9,6 +9,7 @@
     using DiamondBet.Data.Models.Enums;
     using DiamondBet.Services.Data;
     using DiamondBet.Web.ViewModels.Bets;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,7 @@
             this.betsService = betsService;
         }
 
+        [Authorize]
         public IActionResult ByUser(string id)
         {
             var bets = this.betsService.GetBetsByUserId(id);
@@ -38,6 +40,7 @@
             return this.View(model);
         }
 
+        [Authorize]
         public IActionResult All()
         {
             var bets = this.betsService.GetAllBets();
@@ -49,6 +52,7 @@
             return this.View(model);
         }
 
+        [Authorize]
         public async Task<IActionResult> Create(int id, decimal stake, int predictionId)
         {
             var user = await this.userManager.GetUserAsync(this.User);
@@ -72,6 +76,7 @@
             }
         }
 
+        [Authorize]
         public IActionResult ById(string id)
         {
             var model = this.betsService.GetById(id);
