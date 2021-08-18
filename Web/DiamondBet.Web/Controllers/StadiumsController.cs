@@ -22,35 +22,6 @@
             this.selectItemsService = selectItemsService;
         }
 
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            var model = this.stadiumsService.GetStadiumDataForEdit(id);
-
-            if (model == null)
-            {
-                return this.RedirectToAction("Error", "Home");
-            }
-
-            model.CountriesItems = this.selectItemsService.GetAllCountriesNames();
-
-            return this.View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(EditStadiumInputModel input, int id)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                input.CountriesItems = this.selectItemsService.GetAllCountriesNames();
-                return this.View(input);
-            }
-
-            await this.stadiumsService.EditStadiumAsync(input, id);
-
-            return this.RedirectToAction(nameof(this.ById), new { id = id });
-        }
-
         public async Task<IActionResult> Delete(int id)
         {
             await this.stadiumsService.DeleteStadiumAsync(id);

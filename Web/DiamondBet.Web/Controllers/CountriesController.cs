@@ -37,31 +37,5 @@
 
             return this.View(model);
         }
-
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            var model = this.countriesService.GetCountryDataForEdit(id);
-
-            if (model == null)
-            {
-                return this.RedirectToAction("Error", "Home");
-            }
-
-            return this.View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(EditCountryInputModel input, int id)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(input);
-            }
-
-            await this.countriesService.EditCountryAsync(input, id);
-
-            return this.RedirectToAction(nameof(this.ById), new { id = id });
-        }
     }
 }

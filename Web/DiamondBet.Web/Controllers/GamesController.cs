@@ -25,44 +25,6 @@
             this.selectItemsService = selectItemsService;
         }
 
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            var model = this.gamesService.GetGameDataForEdit(id);
-
-            if (model == null)
-            {
-                return this.RedirectToAction("Error", "Home");
-            }
-
-            model.TeamsItems = this.selectItemsService.GetAllTeamsNames();
-            model.CompetitionsItems = this.selectItemsService.GetAllCompetitionsNames();
-            model.StadiumsItems = this.selectItemsService.GetAllStadiumsNames();
-
-            return this.View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(EditGameInputModel input, int id)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                input.TeamsItems = this.selectItemsService.GetAllTeamsNames();
-                input.CompetitionsItems = this.selectItemsService.GetAllCompetitionsNames();
-                input.StadiumsItems = this.selectItemsService.GetAllStadiumsNames();
-                return this.View(input);
-            }
-
-            await this.gamesService.EditGameAsync(input, id);
-
-            if (input.HomeGoals != null && input.AwayGoals != null)
-            {
-                await this.betsService.SettleBetsOnGameResultEditAsync(input, id);
-            }
-
-            return this.RedirectToAction(nameof(this.ById), new { id = id });
-        }
-
         public async Task<IActionResult> Delete(int id)
         {
             await this.gamesService.DeleteGameAsync(id);
