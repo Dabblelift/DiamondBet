@@ -21,6 +21,12 @@ namespace DiamondBet.Data.Models
 
         public decimal Coins { get; set; }
 
+        public int FirstPlaces { get; set; }
+
+        public int SecondPlaces { get; set; }
+
+        public int ThirdPlaces { get; set; }
+
         // Audit info
         public DateTime CreatedOn { get; set; }
 
