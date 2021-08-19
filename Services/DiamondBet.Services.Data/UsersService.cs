@@ -59,7 +59,7 @@
 
         public async Task ResetUsersCoinsAsync()
         {
-            var users = this.usersRepository.All().OrderByDescending(x => x.Coins).ThenBy(x => x.UserBets.Count).ToList();
+            var users = this.usersRepository.All().Where(x => x.UserBets.Count > 0).OrderByDescending(x => x.Coins).ThenBy(x => x.UserBets.Count).ToList();
 
             if (users.Count >= 3)
             {
