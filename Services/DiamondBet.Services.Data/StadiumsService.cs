@@ -83,7 +83,7 @@
                     HomeGoals = x.HomeGoals,
                     HomeTeamId = x.HomeTeamId,
                     HomeTeamName = x.HomeTeam.Name,
-                    StartingTime = x.StartingTime.ToLocalTime(),
+                    StartingTime = x.StartingTime.ToLocalTime().ToString("dd/MM/yyyy HH:mm"),
                 }).ToList();
 
             return this.stadiumsRepository.AllAsNoTracking().Where(x => x.Id == id).Select(x => new StadiumByIdViewModel

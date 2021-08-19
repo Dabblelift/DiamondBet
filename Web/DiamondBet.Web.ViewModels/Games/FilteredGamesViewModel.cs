@@ -20,6 +20,6 @@
 
         public byte? AwayGoals { get; set; }
 
-        public DateTime StartingTime { get; set; }
+        public string StartingTime { get; set; }
     }
 }

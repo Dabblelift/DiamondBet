@@ -60,6 +60,9 @@
             {
                 Id = x.Id,
                 Name = x.Name,
+                CountryId = x.CountryId,
+                CountryName = x.Country.Name,
+                NumberOfParticipants = x.NumberOfParticipants,
             }).OrderBy(x => x.Name).ToList();
         }
 
@@ -80,7 +83,7 @@
                     HomeGoals = x.HomeGoals,
                     HomeTeamId = x.HomeTeamId,
                     HomeTeamName = x.HomeTeam.Name,
-                    StartingTime = x.StartingTime.ToLocalTime(),
+                    StartingTime = x.StartingTime.ToLocalTime().ToString("dd/MM/yyyy HH:mm"),
                 }).ToList();
 
             var upcomingGames = this.gamesRepository
@@ -98,7 +101,7 @@
                     HomeGoals = x.HomeGoals,
                     HomeTeamId = x.HomeTeamId,
                     HomeTeamName = x.HomeTeam.Name,
-                    StartingTime = x.StartingTime.ToLocalTime(),
+                    StartingTime = x.StartingTime.ToLocalTime().ToString("dd/MM/yyyy HH:mm"),
                 }).ToList();
 
             return this.competitionsRepository.AllAsNoTracking().Where(x => x.Id == id).Select(x => new CompetitionByIdViewModel
