@@ -1,6 +1,6 @@
 ﻿@model DiamondBet.Web.ViewModels.Bets.BetsListViewModel
 @{
-    this.ViewData["Title"] = $"{Model.Username}'s Bets:";
+    this.ViewData["Title"] = $"Bets By User";
 }
 
 @if (this.TempData.ContainsKey("Message"))
@@ -16,5 +16,6 @@
 @foreach (var bet in Model.Bets)
 {
     <a class="nav-link text-dark" asp-area="" asp-controller="Bets" asp-action="ById" asp-route-id="@bet.Id">@bet.HomeTeamName @bet.HomeTeamGoals:@bet.AwayTeamGoals @bet.AwayTeamName</a>
-    <p>Prediction: @bet.Prediction / Odds: @bet.BetOdds / Status: @bet.BetStatus / User: @bet.Username</p>
+    <p>Prediction: @bet.Prediction / Odds: @bet.BetOdds / Status: @bet.BetStatus</p>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="ById" asp-route-id="@bet.UserId">User: @bet.Username</a>
 }

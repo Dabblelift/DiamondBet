@@ -21,6 +21,7 @@
         private readonly IStadiumsService stadiumsService;
         private readonly ICountriesService countriesService;
         private readonly IBetsService betsService;
+        private readonly IUsersService usersService;
         private readonly ISelectItemsService selectItemsService;
 
         public EditController(
@@ -30,6 +31,7 @@
             IStadiumsService stadiumsService,
             ICountriesService countriesService,
             IBetsService betsService,
+            IUsersService usersService,
             ISelectItemsService selectItemsService)
         {
             this.gamesService = gamesService;
@@ -38,6 +40,7 @@
             this.stadiumsService = stadiumsService;
             this.countriesService = countriesService;
             this.betsService = betsService;
+            this.usersService = usersService;
             this.selectItemsService = selectItemsService;
         }
 
@@ -190,6 +193,12 @@
             await this.countriesService.EditCountryAsync(input, id);
 
             return this.Redirect("/Countries/ById/" + id.ToString());
+        }
+
+        public async Task<IActionResult> ResetCoins()
+        {
+            await this.usersService.ResetUsersCoinsAsync();
+            return this.Redirect("/");
         }
     }
 }

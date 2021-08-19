@@ -33,7 +33,6 @@
             var model = new BetsListViewModel
             {
                 Bets = bets,
-                Username = this.userManager.GetUserName(this.User),
                 UserId = this.userManager.GetUserId(this.User),
             };
 

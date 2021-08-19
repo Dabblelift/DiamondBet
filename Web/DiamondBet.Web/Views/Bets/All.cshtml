@@ -11,5 +11,6 @@
 @foreach (var bet in Model.Bets)
 {
     <a class="nav-link text-dark" asp-area="" asp-controller="Bets" asp-action="ById" asp-route-id="@bet.Id">@bet.HomeTeamName @bet.HomeTeamGoals:@bet.AwayTeamGoals @bet.AwayTeamName</a>
-    <p>Prediction: @bet.Prediction / Odds: @bet.BetOdds / Status: @bet.BetStatus / User: @bet.Username</p>
-}
+    <p>Prediction: @bet.Prediction / Odds: @bet.BetOdds / Status: @bet.BetStatus</p>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="ById" asp-route-id="@bet.UserId">User: @bet.Username</a>
+   }

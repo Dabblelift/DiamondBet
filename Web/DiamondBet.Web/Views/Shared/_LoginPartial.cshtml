@@ -26,6 +26,7 @@
                     <a class="dropdown-item text-dark" asp-area="Administration" asp-controller="Add" asp-action="Competition">Add Competition</a>
                     <a class="dropdown-item text-dark" asp-area="Administration" asp-controller="Add" asp-action="Stadium">Add Stadium</a>
                     <a class="dropdown-item text-dark" asp-area="Administration" asp-controller="Add" asp-action="Country">Add Country</a>
+                    <a class="dropdown-item text-dark" onclick="return confirm('Are you sure you want to reset the coins of all users?');" asp-area="Administration" asp-controller="Edit" asp-action="ResetCoins">Reset Users' Coins</a>
                 </div>
 
             </li>
