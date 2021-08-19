@@ -5,17 +5,80 @@
     this.ViewData["Title"] = Model.Name;
 }
 
-<h1>@this.ViewData["Title"] </h1>
-
-<h2>Country: @Model.CountryName --- Number of Participants: @Model.NumberOfParticipants</h2>
+<h1 class="text-center p-lg-3">@this.ViewData["Title"] </h1>
 
 @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
 {
-    <p>
-        <a class="nav-link text-dark" asp-area="Administration" asp-controller="Edit" asp-action="Competition" asp-route-id="@Model.Id">Edit Competition</a>
-        <a class="nav-link text-dark" onclick="return confirm('Are you sure you want to delete this Competition?');" asp-area="Administration" asp-controller="Delete" asp-action="Competition" asp-route-id="@Model.Id">Delete Competition</a>
-    </p>
+    <div class="d-flex flex-row my-2 justify-content-end align-items-end">
+        <a class="btn btn-primary nav-link ml-1 text-white" asp-area="Administration" asp-controller="Edit" asp-action="Competition" asp-route-id="@Model.Id">Edit Competition</a>
+        <a class="btn btn-danger nav-link ml-1 text-white" onclick="return confirm('Are you sure you want to delete this Competition?');" asp-area="Administration" asp-controller="Delete" asp-action="Competition" asp-route-id="@Model.Id">Delete Competition</a>
+    </div>
 }
+
+<div class="d-inline-flex flex-row w-100">
+    <article class="d-inline-block flex-row text-center p-xl-4 col-4">
+        <h2 class="text-left p-xl-3">Competition Info:</h2>
+        <h4 class="text-left p-xl-3 text-secondary">Name: @Model.Name</h4>
+        <h4 class="text-left p-xl-3 text-secondary">Country: <a class="nav-link text-secondary d-inline" asp-area="" asp-controller="Countries" asp-action="ById" asp-route-id="@Model.CountryId">@Model.CountryName</a></h4>
+        <h4 class="text-left p-xl-3 text-secondary">Number of Participants: @Model.NumberOfParticipants</h4>
+    </article>
+
+    <article class="d-inline-block flex-row text-center p-xl-4 col-4">
+        <h2 class="text-center p-xl-1">Last 10 games:</h2>
+        <table class="table table-hover table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th class="col-4 p-0">Date</th>
+                    <th class="col-8 p-0">Game</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var game in Model.PreviousGames)
+                {
+                    <tr>
+                        <td class="text-left">
+                            @game.StartingTime
+                        </td>
+                        <td class="text-left">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="ById" asp-route-id="@game.GameId">@game.HomeTeamName @game.HomeGoals:@game.AwayGoals @game.AwayTeamName</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </article>
+
+    <article class="d-inline-block flex-row text-center p-xl-4 col-4">
+        <h2 class="text-center p-xl-1">Next 10 games:</h2>
+        <table class="table table-hover table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th class="col-4 p-0">Date</th>
+                    <th class="col-8 p-0">Game</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var game in Model.UpcomingGames)
+                {
+                    <tr>
+                        <td class="text-left">
+                            @game.StartingTime
+                        </td>
+                        <td class="text-left">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="ById" asp-route-id="@game.GameId">@game.HomeTeamName : @game.AwayTeamName</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </article>
+</div>
+    @*
+
+<div class="d-inline-block flex-row text-center p-xl-5  ">
+    <h2 class="text-left p-xl-3">Next 10 games:</h2>
+
+</div>
 
 <p>Last 10 Games:</p>
 <ul>
@@ -33,3 +96,4 @@
         <li>@game.StartingTime ~ @game.HomeTeamName : @game.AwayTeamName</li>
     }
 </ul>
+*@

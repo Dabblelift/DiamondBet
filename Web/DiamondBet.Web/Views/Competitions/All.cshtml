@@ -8,10 +8,32 @@
     <div class="alert alert-success">@this.TempData["Message"]</div>
 }
 
-<h1>@this.ViewData["Title"]</h1>
+<h1 class="text-center p-lg-3">@this.ViewData["Title"]</h1>
 
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th class="col-4">Competition Name</th>
+            <th class="col-4">Country</th>
+            <th class="col-4">Number of Participants</th>
+        </tr>
+    </thead>
+    <tbody>
 
-@foreach (var competition in Model.Competitions)
-{
-    <a class="nav-link text-dark" asp-area="" asp-controller="Competitions" asp-action="ById" asp-route-id="@competition.Id">@competition.Name</a>
-}
+        @foreach (var competition in Model.Competitions)
+        {
+            <tr>
+                <td>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Competitions" asp-action="ById" asp-route-id="@competition.Id">@competition.Name</a>
+
+                </td>
+                <td>
+                    <a class="nav-link text-dark text-left" asp-area="" asp-controller="Countries" asp-action="ById" asp-route-id="@competition.CountryId">@competition.CountryName</a>
+                </td>
+                <td>
+                    <p>@competition.NumberOfParticipants</p>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
