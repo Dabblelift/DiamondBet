@@ -1,0 +1,10 @@
+﻿@model DiamondBet.Web.ViewModels.ViewComponents.UserRankingViewModel
+
+    <ol style="list-style-type:decimal" class="container">
+        @foreach (var user in Model.Users)
+        {
+        <li>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="ById" asp-route-id="@user.UserId">@user.Username - @user.Coins - @user.BetsCount</a>
+        </li>
+        }
+    </ol>
