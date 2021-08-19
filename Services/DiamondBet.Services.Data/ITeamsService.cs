@@ -11,6 +11,8 @@
     {
         IEnumerable<TeamsInListViewModel> GetAllTeams();
 
+        IEnumerable<TeamsInListViewModel> GetTeamsByCountry(int id);
+
         TeamByIdViewModel GetById(int id);
 
         Task AddTeamAsync(AddTeamInputModel inputModel);

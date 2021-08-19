@@ -128,5 +128,16 @@
                 YearFounded = x.YearFounded,
             }).FirstOrDefault();
         }
+
+        public IEnumerable<TeamsInListViewModel> GetTeamsByCountry(int id)
+        {
+            return this.teamsRepository.AllAsNoTracking().Where(x => x.CountryId == id).Select(x => new TeamsInListViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                CountryId = x.CountryId,
+                CountryName = x.Country.Name,
+            }).OrderBy(x => x.Name).ToList();
+        }
     }
 }

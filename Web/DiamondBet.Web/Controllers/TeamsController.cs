@@ -40,5 +40,18 @@
 
             return this.View(model);
         }
+
+        public IActionResult ByCountry(int? id)
+        {
+            if (id == null)
+            {
+                return this.RedirectToAction("Error", "Home");
+            }
+
+            var teams = this.teamsService.GetTeamsByCountry((int)id);
+            var model = new TeamsListViewModel { Teams = teams, };
+
+            return this.View(model);
+        }
     }
 }

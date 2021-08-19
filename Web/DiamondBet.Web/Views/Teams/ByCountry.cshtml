@@ -1,0 +1,30 @@
+﻿@model DiamondBet.Web.ViewModels.Teams.TeamsListViewModel;
+@{
+    this.ViewData["Title"] = $"Teams by Country";
+}
+
+<h1 class="text-center">@this.ViewData["Title"]</h1>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th class="col-6">Team</th>
+            <th class="col-6">Country</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var team in Model.Teams)
+        {
+            <tr>
+                <td>
+                    <a class="nav-link text-dark text-left" asp-area="" asp-controller="Teams" asp-action="ById" asp-route-id="@team.Id">@team.Name</a>
+                </td>
+                <td>
+                    <a class="nav-link text-dark text-left" asp-area="" asp-controller="Countries" asp-action="ById" asp-route-id="@team.CountryId">@team.CountryName</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
