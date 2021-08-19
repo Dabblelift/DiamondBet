@@ -61,9 +61,9 @@
         {
             var users = this.usersRepository
                 .All()
-                .Where(x => x.UserBets.Where(x => x.CreatedOn.AddMonths(1) > DateTime.Now.ToUniversalTime()).ToList().Count > 0)
+                .Where(x => x.UserBets.Where(x => x.CreatedOn.Month == DateTime.Now.ToUniversalTime().Month).ToList().Count > 0)
                 .OrderByDescending(x => x.Coins)
-                .ThenBy(x => x.UserBets.Where(x => x.CreatedOn.AddMonths(1) > DateTime.Now.ToUniversalTime()).ToList().Count)
+                .ThenBy(x => x.UserBets.Where(x => x.CreatedOn.Month == DateTime.Now.ToUniversalTime().Month).ToList().Count)
                 .ToList();
 
             if (users.Count >= 3)
