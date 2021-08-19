@@ -1,4 +1,6 @@
 ﻿@model DiamondBet.Web.ViewModels.Countries.CountryByIdViewModel
+@using DiamondBet.Common
+
 @{
     this.ViewData["Title"] = Model.Name;
 }
@@ -7,9 +9,10 @@
 
 <h2>Capital: @Model.Capital</h2>
 
-
-<a class="nav-link text-dark" asp-area="Administration" asp-controller="Edit" asp-action="Country" asp-route-id="@Model.Id">Edit country</a>
-
+@if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+{
+    <a class="nav-link text-dark" asp-area="Administration" asp-controller="Edit" asp-action="Country" asp-route-id="@Model.Id">Edit country</a>
+}
 
 <p>Teams from @Model.Name:</p>
 
