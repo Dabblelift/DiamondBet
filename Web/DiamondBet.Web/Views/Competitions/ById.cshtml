@@ -5,7 +5,7 @@
     this.ViewData["Title"] = Model.Name;
 }
 
-<h1 class="text-center p-lg-3">@this.ViewData["Title"] </h1>
+<h1 class="text-center p-lg-3" style="color: rebeccapurple">@this.ViewData["Title"] </h1>
 
 @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
 {
@@ -17,16 +17,16 @@
 
 <div class="d-inline-flex flex-row w-100">
     <article class="d-inline-block flex-row text-center p-xl-4 col-4">
-        <h2 class="text-left p-xl-3">Competition Info:</h2>
-        <h4 class="text-left p-xl-3 text-secondary">Name: @Model.Name</h4>
-        <h4 class="text-left p-xl-3 text-secondary">Country: <a class="nav-link text-secondary d-inline" asp-area="" asp-controller="Countries" asp-action="ById" asp-route-id="@Model.CountryId">@Model.CountryName</a></h4>
-        <h4 class="text-left p-xl-3 text-secondary">Number of Participants: @Model.NumberOfParticipants</h4>
+        <h2 class="text-left p-xl-3" style="color: blueviolet">Competition Info:</h2>
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Name: @Model.Name</h4>
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Country: <a class="nav-link d-inline-flex" style="color: mediumblue"  asp-area="" asp-controller="Countries" asp-action="ById" asp-route-id="@Model.CountryId">@Model.CountryName</a></h4>
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Number of Participants: @Model.NumberOfParticipants</h4>
     </article>
 
     <article class="d-inline-block flex-row text-center p-xl-4 col-4">
-        <h2 class="text-center p-xl-1">Last 10 games:</h2>
+        <h2 class="text-center p-xl-1" style="color: blueviolet">Last 10 games:</h2>
         <table class="table table-hover table-sm">
-            <thead class="thead-light">
+            <thead style="background-color: mediumslateblue">
                 <tr>
                     <th class="col-4 p-0">Date</th>
                     <th class="col-8 p-0">Game</th>
@@ -49,9 +49,9 @@
     </article>
 
     <article class="d-inline-block flex-row text-center p-xl-4 col-4">
-        <h2 class="text-center p-xl-1">Next 10 games:</h2>
+        <h2 class="text-center p-xl-1" style="color: blueviolet">Next 10 games:</h2>
         <table class="table table-hover table-sm">
-            <thead class="thead-light">
+            <thead style="background-color: mediumslateblue">
                 <tr>
                     <th class="col-4 p-0">Date</th>
                     <th class="col-8 p-0">Game</th>
@@ -73,27 +73,4 @@
         </table>
     </article>
 </div>
-    @*
-
-<div class="d-inline-block flex-row text-center p-xl-5  ">
-    <h2 class="text-left p-xl-3">Next 10 games:</h2>
-
-</div>
-
-<p>Last 10 Games:</p>
-<ul>
-    @foreach (var game in Model.PreviousGames)
-    {
-        <li>@game.StartingTime ~ @game.HomeTeamName @game.HomeGoals:@game.AwayGoals @game.AwayTeamName</li>
-    }
-</ul>
-
-
-<p>Next 10 Games:</p>
-<ul>
-    @foreach (var game in Model.UpcomingGames)
-    {
-        <li>@game.StartingTime ~ @game.HomeTeamName : @game.AwayTeamName</li>
-    }
-</ul>
-*@
+   
