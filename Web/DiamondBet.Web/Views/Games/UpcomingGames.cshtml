@@ -8,22 +8,22 @@
     <div class="alert alert-success">@this.TempData["Message"]</div>
 }
 
-<h1 class="text-center">@this.ViewData["Title"]</h1>
+<h1 class="text-center" style="color: rebeccapurple">@this.ViewData["Title"]</h1>
 <ul class="row justify-content-center nav">
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="PreviousGames">Previous Games</a>
+        <a class="nav-link" style="color: mediumblue" asp-area="" asp-controller="Games" asp-action="PreviousGames">Previous Games</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="UpcomingGamesToday">Games In 24 Hours</a>
+        <a class="nav-link" style="color: mediumblue" asp-area="" asp-controller="Games" asp-action="UpcomingGamesToday">Games In 24 Hours</a>
     </li>
 </ul>
 
-<table class="table table-striped">
-    <thead class="thead-dark">
+<table class="table table-striped table-hover">
+    <thead style="background-color: mediumslateblue">
         <tr>
-            <th class="col-2">Date</th>
-            <th class="col-4">Game</th>
-            <th class="col-6">Odds</th>
+            <th class="col-2 text-white">Date</th>
+            <th class="col-4 text-white">Game</th>
+            <th class="col-6 text-white">Odds</th>
         </tr>
     </thead>
     <tbody>
