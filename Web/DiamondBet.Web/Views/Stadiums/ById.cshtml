@@ -5,25 +5,47 @@
     this.ViewData["Title"] = Model.Name;
 }
 
-<h1>@this.ViewData["Title"] </h1>
-
-<h2>Country: @Model.CountryName</h2>
-
-<h3>Year Founded: @Model.YearFounded ~~~ Capacity: @Model.Capacity seats</h3>
+<h1 class="text-center p-3" style="color: rebeccapurple">@this.ViewData["Title"] </h1>
 
 @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
 {
-    <p>
-        <a class="nav-link text-dark" asp-area="Administration" asp-controller="Edit" asp-action="Stadium" asp-route-id="@Model.Id">Edit Stadium</a>
-        <a class="nav-link text-dark" onclick="return confirm('Are you sure you want to delete this stadium?');" asp-area="Administration" asp-controller="Delete" asp-action="Stadium" asp-route-id="@Model.Id">Delete Stadium</a>
-    </p>
+    <div class="d-flex flex-row my-2 justify-content-end align-items-end">
+        <a class="btn btn-primary nav-link ml-1 text-white" asp-area="Administration" asp-controller="Edit" asp-action="Stadium" asp-route-id="@Model.Id">Edit Stadium</a>
+        <a class="btn btn-danger nav-link ml-1 text-white" onclick="return confirm('Are you sure you want to delete this stadium?');" asp-area="Administration" asp-controller="Delete" asp-action="Stadium" asp-route-id="@Model.Id">Delete Stadium</a>
+    </div>
 }
 
-<p>Last 10 Games at @Model.Name:</p>
-<ul>
-    @foreach (var game in Model.Games)
-    {
-        <li>@game.StartingTime ~ @game.HomeTeamName @game.HomeGoals:@game.AwayGoals @game.AwayTeamName</li>
-    }
-</ul>
+<div class="d-inline-flex flex-row w-100">
+    <article class="d-inline-block flex-row text-center p-xl-4 col-4">
+        <h2 class="text-left p-xl-3" style="color: blueviolet">Stadium Info:</h2>
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Name: @Model.Name</h4>
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Capacity: @Model.Capacity</h4>
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Year Founded: @Model.YearFounded</h4>
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Country: <a class="nav-link d-inline-flex" style="color: mediumblue" asp-area="" asp-controller="Countries" asp-action="ById" asp-route-id="@Model.CountryId">@Model.CountryName</a></h4>
+    </article>
 
+    <article class="d-inline-block flex-row text-center p-xl-4 col-6">
+        <h2 class="text-center p-xl-1" style="color: blueviolet">Last 10 games:</h2>
+        <table class="table table-hover table-sm">
+            <thead style="background-color: mediumslateblue">
+                <tr>
+                    <th class="col-4 p-0 text-white">Date</th>
+                    <th class="col-8 p-0 text-white">Game</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var game in Model.Games)
+                {
+                    <tr>
+                        <td class="text-left">
+                            @game.StartingTime
+                        </td>
+                        <td class="text-left">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="ById" asp-route-id="@game.GameId">@game.HomeTeamName @game.HomeGoals:@game.AwayGoals @game.AwayTeamName</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </article>
+</div>

@@ -8,9 +8,30 @@
     <div class="alert alert-success">@this.TempData["Message"]</div>
 }
 
-<h1>@this.ViewData["Title"]</h1>
+<h1 class="text-center p-3" style="color: rebeccapurple">@this.ViewData["Title"]</h1>
 
-@foreach (var stadium in Model.Stadiums)
+<table class="table table-striped w-25 table-hover" align="center">
+    <thead style="background-color: mediumslateblue">
+        <tr>
+            <th class="col-9 text-white">Name</th>
+            <th class="col-3 text-white">Capacity</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var stadium in Model.Stadiums)
+        {
+            <tr>
+                <td>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Stadiums" asp-action="ById" asp-route-id="@stadium.Id">@stadium.Name </a>
+                </td>
+                <td>
+                    @stadium.Capacity seats
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
 {
-    <p><a class="nav-link text-dark" asp-area="" asp-controller="Stadiums" asp-action="ById" asp-route-id="@stadium.Id">@stadium.Name </a> - @stadium.Capacity seats</p>
 }
