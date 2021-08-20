@@ -3,14 +3,47 @@
     this.ViewData["Title"] = "All Bets:";
 }
 
-<h1>@this.ViewData["Title"]</h1>
+<h1 class="text-center p-3" style="color: rebeccapurple">@this.ViewData["Title"]</h1>
 
-<a class="nav-link text-dark" asp-area="" asp-controller="Bets" asp-action="ByUser" asp-route-id="@Model.UserId">My Bets</a>
+<a class="nav-link text-center" style="color: mediumblue" asp-area="" asp-controller="Bets" asp-action="ByUser" asp-route-id="@Model.UserId">Show My Bets</a>
 
+<table class="table table-striped">
+    <thead style="background-color: mediumslateblue">
+        <tr>
+            <th class="col-4 text-white">Game</th>
+            <th class="col-2 text-white">Prediction</th>
+            <th class="col-1 text-white">Bet Odds</th>
+            <th class="col-1 text-white">Bet Status</th>
+            <th class="col-2 text-white">Username</th>
+            <th class="col-2 text-white">Bet Link</th>
+        </tr>
+    </thead>
+    <tbody>
 
-@foreach (var bet in Model.Bets)
-{
-    <a class="nav-link text-dark" asp-area="" asp-controller="Bets" asp-action="ById" asp-route-id="@bet.Id">@bet.HomeTeamName @bet.HomeTeamGoals:@bet.AwayTeamGoals @bet.AwayTeamName</a>
-    <p>Prediction: @bet.Prediction / Odds: @bet.BetOdds / Status: @bet.BetStatus</p>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="ById" asp-route-id="@bet.UserId">User: @bet.Username</a>
-   }
+        @foreach (var bet in Model.Bets)
+        {
+            <tr>
+                <td>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="ById" asp-route-id="@bet.GameId">@bet.HomeTeamName @bet.HomeTeamGoals:@bet.AwayTeamGoals @bet.AwayTeamName</a>
+                </td>
+                <td>
+                    @bet.Prediction
+                </td>
+                <td>
+                    @bet.BetOdds
+                </td>
+                <td>
+                    @bet.BetStatus
+                </td>
+                <td>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="ById" asp-route-id="@bet.UserId">@bet.Username</a>
+                </td>
+                <td>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Bets" asp-action="ById" asp-route-id="@bet.Id">Go to Bet Page -></a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+

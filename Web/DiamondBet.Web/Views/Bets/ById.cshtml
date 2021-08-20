@@ -1,12 +1,52 @@
 ﻿@model DiamondBet.Web.ViewModels.Bets.BetByIdViewModel
 @{
-    this.ViewData["Title"] = $"Bet By Id - {Model.Id}";
+    this.ViewData["Title"] = "Bet By Id";
 }
 
-<h1>@this.ViewData["Title"]</h1>
+<h1 class="text-center p-3" style="color: rebeccapurple">@this.ViewData["Title"]</h1>
 
+<h2 class="text-center p-3">
+    <a class="nav-link" style="color: blueviolet" asp-area="" asp-controller="Games" asp-action="ById" asp-route-id="@Model.GameId">Game: @Model.HomeTeamName @Model.HomeTeamGoals:@Model.AwayTeamGoals @Model.AwayTeamName</a>
+</h2>
 
-<a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="ById" asp-route-id="@Model.GameId">@Model.HomeTeamName @Model.HomeTeamGoals:@Model.AwayTeamGoals @Model.AwayTeamName</a>
-<p>Bet Type: @Model.BetType / Prediction: @Model.Prediction / Status: @Model.BetStatus</p>
-<a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="ById" asp-route-id="@Model.UserId">User: @Model.Username</a>
-<p>Stake: @Model.Stake / Odds: @Model.BetOdds / Return on Win: @Model.ReturnOnWin</p>
+<div class="d-inline-flex flex-row w-100">
+    <article class="d-inline-block flex-row text-center p-xl-4 col-6">
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Bet Type: @Model.BetType</h4>
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Prediction: @Model.Prediction</h4>
+        @if (Model.BetStatus == "Won")
+        {
+            <h4 class="text-left p-xl-3" style="color: green">Status: @Model.BetStatus</h4>
+
+        }
+        else if (Model.BetStatus == "Lost")
+        {
+            <h4 class="text-left p-xl-3" style="color: darkred">Status: @Model.BetStatus</h4>
+        }
+        else
+        {
+            <h4 class="text-left p-xl-3" style="color: midnightblue">Status: @Model.BetStatus</h4>
+        }
+
+        <h4 class="text-left p-xl-3">
+            User: <a class="nav-link d-inline-flex p-xl-3" style="color: mediumblue" asp-area="" asp-controller="Users" asp-action="ById" asp-route-id="@Model.UserId">@Model.Username</a>
+        </h4>
+    </article>
+
+    <article class="d-inline-block flex-row text-center p-xl-4 col-4">
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Stake: @Model.Stake</h4>
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Odds: @Model.BetOdds</h4>
+        @if (Model.BetStatus == "Won")
+        {
+            <h4 class="text-left p-xl-3" style="color: green">Return: @Model.ReturnOnWin</h4>
+
+        }
+        else if (Model.BetStatus == "Lost")
+        {
+            <h4 class="text-left p-xl-3" style="color: darkred">Return: 0</h4>
+        }
+        else
+        {
+            <h4 class="text-left p-xl-3" style="color: midnightblue">Return On Win: @Model.ReturnOnWin</h4>
+        }
+    </article>
+</div>

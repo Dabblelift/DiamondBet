@@ -4,18 +4,66 @@
     this.ViewData["Title"] = $"User {Model.Username}";
 }
 
-<h1 class="text-center">@this.ViewData["Title"]</h1>
+<h1 class="text-center p-3" style="color: rebeccapurple">@this.ViewData["Title"]</h1>
 
-<h2>Registered On: @Model.RegisteredOn</h2>
-<h3>Coins: @Model.Coins</h3>
+<div class="d-inline-flex flex-row w-100">
+    <article class="d-inline-block flex-row text-center p-xl-4 col-4">
+        <h2 class="text-left p-xl-3" style="color: blueviolet">User Info:</h2>
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Name: @Model.Username</h4>
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Registered On: @Model.RegisteredOn</h4>
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Coins: @Model.Coins</h4>
+        <h4 class="text-left p-xl-3" style="color: goldenrod">First Places: @Model.FirstPlaces</h4>
+        <h4 class="text-left p-xl-3" style="color: silver">Second Places: @Model.SecondPlaces</h4>
+        <h4 class="text-left p-xl-3" style="color: saddlebrown">Third Places: @Model.ThirdPlaces</h4>
+    </article>
 
-<h4>First Places: @Model.FirstPlaces / Second Places: @Model.SecondPlaces / Third Places: @Model.ThirdPlaces</h4>
+    <article class="d-inline-block flex-row text-center p-xl-4 col-8">
+        <h2 class="text-center p-xl-1" style="color: blueviolet">@Model.Username's Bets</h2>
+        <table class="table table-hover table-sm">
+            <thead style="background-color: mediumslateblue">
+                <tr>
+                    <th class="col-4 p-0 text-white">Game</th>
+                    <th class="col-2 p-0 text-white">Prediction</th>
+                    <th class="col-2 p-0 text-white">Odds</th>
+                    <th class="col-2 p-0 text-white">Status</th>
+                    <th class="col-2 p-0 text-white">Bet Link</th>
+                </tr>
+            </thead>
+            <tbody>
 
-<p>@Model.Username's bets</p>
-<ul>
-    @foreach (var bet in Model.Bets)
-    {
-        <li>@bet.HomeTeamName @bet.HomeTeamGoals:@bet.AwayTeamGoals @bet.AwayTeamName --- @bet.Prediction / @bet.BetOdds / @bet.BetStatus</li>
-    }
-</ul>
-<a class="nav-link text-dark" asp-area="" asp-controller="Bets" asp-action="ByUser" asp-route-id="@Model.Id">See All</a>
+                @foreach (var bet in Model.Bets)
+                {
+                    <tr>
+                        <td class="text-left">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="ById" asp-route-id="@bet.GameId">@bet.HomeTeamName @bet.HomeTeamGoals:@bet.AwayTeamGoals @bet.AwayTeamName</a>
+                        </td>
+                        <td class="text-left">
+                            @bet.Prediction
+                        </td>
+                        <td>
+                            @bet.BetOdds
+                        </td>
+                        <td>
+                            @bet.BetStatus
+                        </td>
+                        <td>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Bets" asp-action="ById" asp-route-id="@bet.Id">Go To Bet Page -></a>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="background-color: deepskyblue">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Bets" asp-action="ByUser" asp-route-id="@Model.Id">See All</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
+</div>
+
+
+
