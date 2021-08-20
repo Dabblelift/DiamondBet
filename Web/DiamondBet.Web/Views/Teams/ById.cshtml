@@ -5,34 +5,90 @@
     this.ViewData["Title"] = Model.Name;
 }
 
-<h1>Team name: @Model.Name</h1>
-
-<h2>Country: @Model.CountryName</h2>
-<h3>Founded In: @Model.YearFounded ~~ Nickname: @Model.NickName</h3>
+<h1 class="text-center p-lg-3" style="color: rebeccapurple">@Model.Name</h1>
 
 @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
 {
-    <p>
-        <a class="nav-link text-dark" asp-area="Administration" asp-controller="Edit" asp-action="Team" asp-route-id="@Model.Id">Edit team</a>
-        <a class="nav-link text-dark" onclick="return confirm('Are you sure you want to delete this team?');" asp-area="Administration" asp-controller="Delete" asp-action="Team" asp-route-id="@Model.Id">Delete team</a>
-    </p>
+    <div class="d-flex flex-row my-2 justify-content-end align-items-end">
+        <a class="btn btn-primary nav-link ml-1 text-white" asp-area="Administration" asp-controller="Edit" asp-action="Team" asp-route-id="@Model.Id">Edit team</a>
+        <a class="btn btn-danger nav-link ml-1 text-white" onclick="return confirm('Are you sure you want to delete this team?');" asp-area="Administration" asp-controller="Delete" asp-action="Team" asp-route-id="@Model.Id">Delete team</a>
+    </div>
 }
 
-<p>Last 5 Games:</p>
-<ul>
-    @foreach (var game in Model.PreviousGames)
-    {
-        <li>@game.StartingTime ~ @game.HomeTeamName @game.HomeGoals:@game.AwayGoals @game.AwayTeamName</li>
-    }
-</ul>
-<a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="PreviousGames" asp-route-id="@Model.Id">See All</a>
 
+<div class="d-inline-flex flex-row w-100">
+    <article class="d-inline-block flex-row text-center p-xl-4 col-4">
+        <h2 class="text-left p-xl-3" style="color: blueviolet">Team Info:</h2>
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Name: @Model.Name</h4>
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Nickname: @Model.NickName</h4>
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Founded In: @Model.YearFounded</h4>
+        <h4 class="text-left p-xl-3" style="color: midnightblue">Country: <a class="nav-link d-inline-flex" style="color: mediumblue" asp-area="" asp-controller="Countries" asp-action="ById" asp-route-id="@Model.CountryId">@Model.CountryName</a></h4>
+    </article>
 
-<p>Next 5 Games:</p>
-<ul>
-    @foreach (var game in Model.UpcomingGames)
-    {
-        <li>@game.StartingTime ~ @game.HomeTeamName : @game.AwayTeamName</li>
-    }
-</ul>
-<a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="UpcomingGames" asp-route-id="@Model.Id">See All</a>
+    <article class="d-inline-block flex-row text-center p-xl-4 col-4">
+        <h2 class="text-center p-xl-1" style="color: blueviolet">Last 5 games:</h2>
+        <table class="table table-hover table-sm">
+            <thead style="background-color: mediumslateblue">
+                <tr>
+                    <th class="col-4 p-0 text-white">Date</th>
+                    <th class="col-8 p-0 text-white">Game</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var game in Model.PreviousGames)
+                {
+                    <tr>
+                        <td class="text-left">
+                            @game.StartingTime
+                        </td>
+                        <td class="text-left">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="ById" asp-route-id="@game.GameId">@game.HomeTeamName @game.HomeGoals:@game.AwayGoals @game.AwayTeamName</a>
+                        </td>
+                    </tr>
+                }
+
+                <tr>
+                    <td>
+                    </td>
+                    <td style="background-color: deepskyblue">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="PreviousGames" asp-route-id="@Model.Id">See All</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
+
+    <article class="d-inline-block flex-row text-center p-xl-4 col-4">
+        <h2 class="text-center p-xl-1" style="color: blueviolet">Next 5 games:</h2>
+        <table class="table table-hover table-sm">
+            <thead style="background-color: mediumslateblue">
+                <tr>
+                    <th class="col-4 p-0 text-white">Date</th>
+                    <th class="col-8 p-0 text-white">Game</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var game in Model.UpcomingGames)
+                {
+                    <tr>
+                        <td class="text-left">
+                            @game.StartingTime
+                        </td>
+                        <td class="text-left">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="ById" asp-route-id="@game.GameId">@game.HomeTeamName : @game.AwayTeamName</a>
+                        </td>
+                    </tr>
+                }
+
+                <tr>
+                    <td>
+                    </td>
+                    <td style="background-color: deepskyblue">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="PreviousGames" asp-route-id="@Model.Id">See All</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
+</div>
+
