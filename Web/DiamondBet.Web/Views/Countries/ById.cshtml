@@ -5,20 +5,41 @@
     this.ViewData["Title"] = Model.Name;
 }
 
-<h1>@this.ViewData["Title"]</h1>
+<h1 class="text-center" style="color: rebeccapurple">@this.ViewData["Title"]</h1>
 
-<h2>Capital: @Model.Capital</h2>
+<h4 class="text-center" style="color: midnightblue">Capital: @Model.Capital</h4>
 
 @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
 {
-    <a class="nav-link text-dark" asp-area="Administration" asp-controller="Edit" asp-action="Country" asp-route-id="@Model.Id">Edit country</a>
+    <div class="d-flex flex-row my-2 justify-content-end align-items-end">
+        <a class="btn btn-primary nav-link ml-1 text-white" asp-area="Administration" asp-controller="Edit" asp-action="Country" asp-route-id="@Model.Id">Edit Country</a>
+    </div>
 }
 
-<p>Teams from @Model.Name:</p>
+<h2 class="text-center" style="color: blueviolet">Teams from @Model.Name:</h2>
 
-@foreach (var team in Model.Teams)
-{
-    <a class="nav-link text-dark" asp-area="" asp-controller="Teams" asp-action="ById" asp-route-id="@team.Id">@team.Name</a>
-}
 
-<a class="nav-link text-dark" asp-area="" asp-controller="Teams" asp-action="ByCountry" asp-route-id="@Model.Id" >See All</a>
+<table class="table table-striped table-hover w-25" align="center">
+    <thead>
+        <tr>
+            <th class="text-center text-white" style="background-color: mediumslateblue">Team name</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var team in Model.Teams)
+        {
+            <tr>
+                <td>
+                    <a class="nav-link text-dark text-center" asp-area="" asp-controller="Teams" asp-action="ById" asp-route-id="@team.Id">@team.Name</a>
+                </td>
+            </tr>
+        }
+
+        <tr>
+            <td style="background-color: lightskyblue">
+                <a class="nav-link text-dark text-center" asp-area="" asp-controller="Teams" asp-action="ByCountry" asp-route-id="@Model.Id">See All</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
