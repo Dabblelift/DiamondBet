@@ -1,10 +1,27 @@
 ﻿@model DiamondBet.Web.ViewModels.ViewComponents.UserRankingViewModel
 
-    <ol style="list-style-type:decimal" class="container">
-        @foreach (var user in Model.Users)
-        {
-        <li>
-            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="ById" asp-route-id="@user.UserId">@user.Username - @user.Coins - @user.BetsCount</a>
-        </li>
-        }
-    </ol>
+    <table class="table table-hover table-sm w-50" align="center">
+        <thead style="background-color: mediumslateblue">
+            <tr>
+                <th class="col-6 p-0 text-white">Username</th>
+                <th class="col-4 p-0 text-white">Coins</th>
+                <th class="col-2 p-0 text-white">Bets Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td class="text-left">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="ById" asp-route-id="@user.UserId">@user.Username</a>
+                    </td>
+                    <td class="text-left">
+                        @user.Coins
+                    </td>
+                    <td>
+                        @user.BetsCount
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

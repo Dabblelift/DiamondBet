@@ -1,12 +1,25 @@
 ﻿@using DiamondBet.Common
+@using DiamondBet.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+
+
+
 @{
     this.ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
+    <h1 class="display-2 p-5" style="color: rebeccapurple">Welcome to @GlobalConstants.SystemName!</h1>
 </div>
+@if (this.SignInManager.IsSignedIn(this.User))
+{
+    <h2 class="text-center p-3" style="color: blueviolet">This month's User Ranking:</h2>
 
-<h2 class="text-center">This month's User Ranking:</h2>
-
-<vc:user-ranking></vc:user-ranking>
+    <vc:user-ranking></vc:user-ranking>
+}
+else
+{
+    <h2 class="text-center" style="color: blueviolet">Join us and test your football knowledge against many other fans.</h2>
+    <h2 class="text-center" style="color: blueviolet">Place your bets and try to climb up the rankings and win.</h2>
+}
