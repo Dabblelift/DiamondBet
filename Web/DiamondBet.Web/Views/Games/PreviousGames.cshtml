@@ -35,14 +35,3 @@
         }
     </tbody>
 </table>
-
-
-<ul style="list-style-type:none">
-    @foreach (var game in Model.Games)
-    {
-        <li>
-            @game.StartingTime ~ @game.HomeTeamName - @game.HomeTeamGoals:@game.AwayTeamGoals - @game.AwayTeamName
-            <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="ById" asp-route-id="@game.Id">Go to Match Details</a>
-        </li>
-    }
-</ul>
