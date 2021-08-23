@@ -31,7 +31,7 @@
             this.gamesRepository.Setup(x => x.Delete(It.IsAny<Game>())).Callback(
                 (Game game) => this.GamesList.Remove(game));
             this.oddsRepository = new Mock<IDeletableEntityRepository<Odds>>();
-            this.oddsRepository.Setup(x => x.All()).Returns(this.OddsList.AsQueryable<Odds>());
+            this.oddsRepository.Setup(x => x.All()).Returns(this.OddsList.AsQueryable());
             this.GamesService = new GamesService(this.gamesRepository.Object, this.oddsRepository.Object);
         }
 
