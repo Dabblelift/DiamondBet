@@ -43,7 +43,7 @@
         {
             if (id != null)
             {
-                var teamGames = this.gamesService.GetUpcomingGamesByTeam((int)id);
+                var teamGames = this.gamesService.GetPreviousGamesByTeam((int)id);
                 var parameterModel = new GamesListViewModel { Games = teamGames };
                 return this.View(parameterModel);
             }
