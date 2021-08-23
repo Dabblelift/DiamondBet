@@ -205,7 +205,7 @@
                 }).ToList();
         }
 
-        IEnumerable<GamеsInListViewModel> IGamesService.GetPreviousGamesByTeam(int teamId)
+        public IEnumerable<GamеsInListViewModel> GetPreviousGamesByTeam(int teamId)
         {
             return this.gamesRepository
                 .AllAsNoTracking()
@@ -235,7 +235,7 @@
                 }).ToList();
         }
 
-        IEnumerable<GamеsInListViewModel> IGamesService.GetUpcomingGamesByTeam(int teamId)
+        public IEnumerable<GamеsInListViewModel> GetUpcomingGamesByTeam(int teamId)
         {
             return this.gamesRepository
                 .AllAsNoTracking()
