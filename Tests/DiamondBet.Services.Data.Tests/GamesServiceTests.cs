@@ -333,7 +333,7 @@
                 AwayTeamId = 5,
                 AwayTeam = new Team { Id = 5, Name = "Chelsea" },
                 CompetitionId = 3,
-                Competition = new Competition { Id = 3, Name = "Premier League"},
+                Competition = new Competition { Id = 3, Name = "Premier League" },
                 StadiumId = 5,
                 StartingTime = DateTime.Now.AddDays(3),
                 Odds = upcomingGameOdds,
